@@ -1,0 +1,50 @@
+// Import Bootstrap styles
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+// Custom colors based on Medanta logo
+$primary: #136d43; // Green from leaf
+$secondary: #c6a869; // Beige from stem
+$accent: #0084a0; // Blue from text
+
+// Highlight logo colors
+$logo-red: #e54a25; // Adjust based on actual logo colors
+$logo-grey: #a4a4a4;
+
+// Navbar styles
+.navbar {
+  padding: 1rem 0;
+  border-bottom: 2px solid $secondary;
+
+  .header-logo {
+    height: 3rem;
+    margin-right: 1rem;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+  }
+
+  .navbar-toggler-icon {
+    background-color: $secondary;
+  }
+
+  .navbar-nav {
+    margin-left: auto;
+  }
+
+  .header-title {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  // Incorporate logo colors for visual appeal
+  .navbar-brand > a {
+    color: $logo-red; // Use primary logo color for text
+  }
+
+  .navbar-brand > a:hover {
+    color: $logo-grey; // Use secondary logo color on hover
+  }
+}

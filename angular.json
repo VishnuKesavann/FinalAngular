@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "src/assets/image/common/Logo.png",
-              "src/assets"
+              "src/assets",
+              "src/assets/image"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
