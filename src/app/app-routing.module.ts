@@ -32,7 +32,7 @@ const routes: Routes = [
   loadChildren:()=>import('./d-doctor/d-doctor.module').then(x=>x.DDoctorModule)
   },
 
-{path:'lab',component:LaboratoryComponent,
+{path:'labtech',component:LaboratoryComponent,
   loadChildren:()=>import('./l-laboratory/l-laboratory.module').then(x=>x.LLaboratoryModule)
   },
 
