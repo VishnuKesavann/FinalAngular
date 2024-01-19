@@ -7,7 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule
-
+    MatSlideToggleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
