@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {PatientService} from 'src/app/shared/patient.service'
 @Component({
   selector: 'app-list-patient',
   templateUrl: './list-patient.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPatientComponent implements OnInit {
 
-  constructor() { }
+  constructor(public patientservice:PatientService) { }
 
   ngOnInit(): void {
+     console.log('Welcome to List Life Cycle Hook');
+     this.patientservice.BindListPatients();
   }
 
 }
