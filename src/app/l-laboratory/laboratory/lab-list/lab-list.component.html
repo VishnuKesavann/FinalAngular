@@ -1,0 +1,14 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>PatientName</th>
+            <th>DoctorName</th>
+            <th>TestName</th>
+            <th>TestStatus</th>
+        </tr>
+    </thead>
+</table>
+<tbody>
+    <tr *ngFor="let lab of labtestvmService.labtestvm"></tr>
+</tbody>
