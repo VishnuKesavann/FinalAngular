@@ -14,7 +14,7 @@ import { LaboratoryComponent } from './l-laboratory/laboratory/laboratory.compon
 const routes: Routes = [
   {path:'lab',component:LabComponent,
   loadChildren:()=>import('./a-lab/a-lab.module').then(x=>x.ALabModule)
-},
+ },
 
 {path:'login',component:LoginComponent,
   loadChildren:()=>import('./a-login/a-login.module').then(x=>x.ALoginModule)
