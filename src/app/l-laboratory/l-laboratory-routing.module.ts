@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LabListComponent } from './laboratory/lab-list/lab-list.component';
+import { LablistComponent } from './lablist/lablist.component';
+
 
 const routes: Routes = [
-{path: 'LabList',component:LabListComponent}
+{path: 'lablist',component:LablistComponent}
 ];
 
 @NgModule({

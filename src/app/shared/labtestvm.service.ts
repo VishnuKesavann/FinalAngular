@@ -8,7 +8,7 @@ import { environment} from 'src/environments/environment';
 })
 export class LabtestvmService {
   labtestvm: Labtestvm[];
-  formData: Labtestvm=new Labtestvm();
+  formData_L: Labtestvm=new Labtestvm();
 
   constructor(private httpClient:HttpClient) { }
 

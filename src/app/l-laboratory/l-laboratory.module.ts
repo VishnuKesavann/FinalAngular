@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { LLaboratoryRoutingModule } from './l-laboratory-routing.module';
 import { LaboratoryComponent } from './laboratory/laboratory.component';
-import { LabListComponent } from './laboratory/lab-list/lab-list.component';
+import { LablistComponent } from './lablist/lablist.component';
+import { LabaddComponent } from './labadd/labadd.component';
+
 
 
 @NgModule({
-  declarations: [LaboratoryComponent, LabListComponent],
+  declarations: [LaboratoryComponent, LablistComponent, LabaddComponent],
   imports: [
     CommonModule,
     LLaboratoryRoutingModule

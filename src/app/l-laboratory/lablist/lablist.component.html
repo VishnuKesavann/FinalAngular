@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>PatientName</th>
+            <th>DoctorName</th>
+            <th>TestName</th>
+            <th>TestStatus</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lab of labtestvmService.labtestvm">
+        <td>{{lab.AppointmentId}}</td>
+        <td>{{lab.PatientName}}</td>
+        <td>{{lab.DoctorName}}</td>
+        <td>{{lab.TestName}}</td>
+        <td>{{lab.LabTestStatus}}</td>
+        <td>
+            <button class="btn btn-info">Generate</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
