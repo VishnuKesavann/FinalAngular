@@ -1,25 +1,39 @@
-<table class="table table-bordered table-striped table-dark">
-    <thead>
-        <tr>
-            <th style="display: none;">ID</th>
-            <th>Register Number</th>
-            <th>Name</th>
-            <th>DOB</th>
-            <th>Phone Number</th>
-            <th colspan="3"></th>
-           
-        </tr>
-    </thead>
-   <tbody>
-    <tr *ngFor="let patient of patientservice.patients">
-        <td style="display: none;">{{patient.PatientId}}</td>
-        <td>{{patient.RegisterNo}}</td>
-        <td>{{patient.PatientName}}</td> 
-        <td>{{patient.PatientDob}}</td>
-        <td>{{patient.PhoneNumber}}</td>
-        <td><button class="btn btn-primary">Edit</button></td>
-        <td><button class="btn btn-secondary">Details</button></td>
-        <td><button class="btn btn-danger">Disable</button></td>
-    </tr>
-   </tbody> 
-</table>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col">
+            <a [routerLink]="['../patient-add']" class="btn btn-outline-info btn-md">Register New Patient</a>
+        </div>
+    </div>
+    
+    <div class="row mt-3">
+        <div class="col">
+            <table class="table table-bordered table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th style="display: none;">ID</th>
+                        <th>Register Number</th>
+                        <th>Name</th>
+                        <th>DOB</th>
+                        <th>Phone Number</th>
+                        <th colspan="3"></th>
+                       
+                    </tr>
+                </thead>
+               <tbody>
+                <tr *ngFor="let patient of patientservice.patients">
+                    <td style="display: none;">{{patient.PatientId}}</td>
+                    <td>{{patient.RegisterNo}}</td>
+                    <td>{{patient.PatientName}}</td> 
+                    <td>{{patient.PatientDob | date:'dd/MMM/yyyy'}}</td>
+                    <td>{{patient.PhoneNumber}}</td>
+                    <td><button class="btn btn-primary">Edit</button></td>
+                    <td><button class="btn btn-secondary">Details</button></td>
+                    <td><button class="btn btn-danger">Disable</button></td>
+                </tr>
+               </tbody> 
+            </table>
+        </div>
+    </div>
+   
+    
+</div>
