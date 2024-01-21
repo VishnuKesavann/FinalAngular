@@ -28,7 +28,7 @@
                     <td>{{patient.PhoneNumber}}</td>
                     <td><button class="btn btn-primary" (click)="updatePatient(patient.PatientId)">Edit</button></td>
                     <td><button class="btn btn-secondary" (click)="detailsPatient(patient.PatientId)">Details</button></td>
-                    <td><button class="btn btn-danger">Disable</button></td>
+                    <td><button class="btn btn-danger" (click)="openConfirmationDialog(patient.PatientId)">Disable</button></td>
                 </tr>
                </tbody> 
             </table>

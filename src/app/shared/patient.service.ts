@@ -34,4 +34,10 @@ getPatient(patientId:number):Observable<any>{
 updatePatient(patient1:Patient):Observable<any>{
   return this.httpClient.put(environment.apiUrl+'api/RPatient',patient1);
 }
+
+//disabling Patient Records
+disablePatient(patientId: number) {
+  return this.httpClient.patch(environment.apiUrl + 'api/RPatient/' + patientId, {});
+}
+
 }
