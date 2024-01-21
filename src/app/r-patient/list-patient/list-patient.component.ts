@@ -30,15 +30,26 @@ export class ListPatientComponent implements OnInit {
   }
 // Open confirmation dialog
 openConfirmationDialog(patientId: number): void {
-  const dialogRef = this.dialog.open(ConfirmationDailogComponent, {
-    width: '500px',
-    data: { message: 'Do you really want to disable this patient record?' }
-  });
+  
+  const confirmationMessage = this.showDisablePatient
+  ? 'Do you really want to enable this patient record?'
+  : 'Do you really want to disable this patient record?';
+
+const dialogRef = this.dialog.open(ConfirmationDailogComponent, {
+  width: '500px',
+  data: { message: confirmationMessage }
+});
 
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      // User clicked Confirm
+      if(this.showDisablePatient){
+        this.enablePatientRecords(patientId);
+      }else
+      {
+        // User clicked Confirm
       this.disablePatientRecords(patientId);
+      }
+      
     }
   });
 }

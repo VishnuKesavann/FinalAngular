@@ -29,7 +29,7 @@
                     <td *ngIf="!showDisablePatient"><button class="btn btn-primary" (click)="updatePatient(patient.PatientId)">Edit</button></td>
                     <td *ngIf="!showDisablePatient"><button class="btn btn-secondary" (click)="detailsPatient(patient.PatientId)">Details</button></td>
                     <td *ngIf="!showDisablePatient"><button class="btn btn-danger" (click)="openConfirmationDialog(patient.PatientId)">Disable</button></td>
-                    <td *ngIf="showDisablePatient"><button class="btn btn-success" (click)="enablePatientRecords(patient.PatientId)">Enable</button></td>
+                    <td *ngIf="showDisablePatient"><button class="btn btn-success" (click)="openConfirmationDialog(patient.PatientId)">Enable</button></td>
                 </tr>
                </tbody> 
             </table>
