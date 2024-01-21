@@ -17,8 +17,9 @@ import { DetailsPatientComponent } from './details-patient/details-patient.compo
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-dailog.component';
+import { DisabledPatientListComponent } from './disabled-patient-list/disabled-patient-list.component';
 @NgModule({
-  declarations: [PatientComponent, ListPatientComponent, AddPatientComponent, EditPatientComponent, DetailsPatientComponent, ConfirmationDailogComponent],
+  declarations: [PatientComponent, ListPatientComponent, AddPatientComponent, EditPatientComponent, DetailsPatientComponent, ConfirmationDailogComponent, DisabledPatientListComponent],
   imports: [
     CommonModule,
     RPatientRoutingModule,

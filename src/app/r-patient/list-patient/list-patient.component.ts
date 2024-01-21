@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {PatientService} from 'src/app/shared/patient.service'
 import { ConfirmationDailogComponent } from '../confirmation-dailog/confirmation-dailog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,12 +10,13 @@ import {  ToastrService } from 'ngx-toastr';
   styleUrls: ['./list-patient.component.scss']
 })
 export class ListPatientComponent implements OnInit {
-
-  constructor(public patientservice:PatientService,private router:Router,private dialog: MatDialog,private toastr:ToastrService ) { }
+  showDisablePatient:boolean=false;
+  constructor(public patientservice:PatientService,private router:Router,private dialog: MatDialog,private toastr:ToastrService,private route:ActivatedRoute ) { }
 
   ngOnInit(): void {
      console.log('Welcome to List Life Cycle Hook');
-     this.patientservice.BindListPatients();
+     this.showDisablePatient=this.route.snapshot.routeConfig.path==='disabledpatient-list'
+     this.showDisablePatient ? this.patientservice.BindDisabledPatientRecords() : this.patientservice.BindListPatients();//if true show the disable-patient records else list active patient
   }
   //Edit Patient Records
   updatePatient(PatientId:number){
@@ -30,7 +31,7 @@ export class ListPatientComponent implements OnInit {
 // Open confirmation dialog
 openConfirmationDialog(patientId: number): void {
   const dialogRef = this.dialog.open(ConfirmationDailogComponent, {
-    width: '300px',
+    width: '500px',
     data: { message: 'Do you really want to disable this patient record?' }
   });
 
@@ -41,7 +42,7 @@ openConfirmationDialog(patientId: number): void {
     }
   });
 }
-
+//Disabling the Patient Records
 disablePatientRecords(patientId: number) {
   console.log('Disabling patient records for ID:', patientId);
 

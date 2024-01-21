@@ -3,6 +3,7 @@ import { Patient } from './patient';
 import {HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import {environment} from 'src/environments/environment'
+import { error } from '@angular/compiler/src/util';
 @Injectable({
   providedIn: 'root'
 })
@@ -39,5 +40,15 @@ updatePatient(patient1:Patient):Observable<any>{
 disablePatient(patientId: number) {
   return this.httpClient.patch(environment.apiUrl + 'api/RPatient/' + patientId, {});
 }
-
+//Get All Disabled Patient Records
+BindDisabledPatientRecords(){
+  this.httpClient.get(environment.apiUrl+'api/RPatient/GetDisabledPatient').toPromise().then(
+    response=>{
+      this.patients=response as Patient[];
+      console.log(this.patients);
+    }
+  ).catch(error=>{
+    console.error('Error: ',error);
+  })
+}
 }
