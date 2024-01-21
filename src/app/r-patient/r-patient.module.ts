@@ -12,10 +12,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import { EditPatientComponent } from './edit-patient/edit-patient.component'
-
+import { EditPatientComponent } from './edit-patient/edit-patient.component';
+import { DetailsPatientComponent } from './details-patient/details-patient.component'
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
-  declarations: [PatientComponent, ListPatientComponent, AddPatientComponent, EditPatientComponent],
+  declarations: [PatientComponent, ListPatientComponent, AddPatientComponent, EditPatientComponent, DetailsPatientComponent],
   imports: [
     CommonModule,
     RPatientRoutingModule,
@@ -25,7 +27,9 @@ import { EditPatientComponent } from './edit-patient/edit-patient.component'
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatIconModule
   ]
 })
 export class RPatientModule { }

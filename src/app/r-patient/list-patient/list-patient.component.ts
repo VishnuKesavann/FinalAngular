@@ -17,6 +17,11 @@ export class ListPatientComponent implements OnInit {
   //Edit Patient Records
   updatePatient(PatientId:number){
     console.log(PatientId);
-    this.router.navigate(['/patient/edit-patient',PatientId])
+    this.router.navigate(['/patient/edit-patient',PatientId]);
+  }
+  //Details Patient Records
+  detailsPatient(PatientId:number){
+    console.log(PatientId);
+    this.router.navigate(['/patient/details-patient',PatientId]);
   }
 }
