@@ -44,11 +44,13 @@ const dialogRef = this.dialog.open(ConfirmationDailogComponent, {
     if (result) {
       if(this.showDisablePatient){
         this.enablePatientRecords(patientId);
-      }else
+      }
+      else
       {
         // User clicked Confirm
       this.disablePatientRecords(patientId);
-      }
+      
+      }  
       
     }
   });
