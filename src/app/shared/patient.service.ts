@@ -51,4 +51,9 @@ BindDisabledPatientRecords(){
     console.error('Error: ',error);
   })
 }
+
+//Enable the Disabled Patient Records
+enablePatient(patientId:number){
+  return this .httpClient.patch(environment.apiUrl+'api/RPatient/Enable/'+patientId,{});
+}
 }

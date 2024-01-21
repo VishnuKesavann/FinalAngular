@@ -64,7 +64,27 @@ disablePatientRecords(patientId: number) {
   );
 }
 
+//Disabling the Patient Records
+enablePatientRecords(patientId: number) {
+  console.log('enabling patient records for ID:', patientId);
 
+  this.patientservice.enablePatient(patientId).subscribe(
+    response => {
+      console.log('Patient records enabled successfully:', response);
+      this.toastr.success('Enabled the Patient Record Successfully', 'Medanta Clinic');
+      
+      // Reload the current route
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([this.router.url]);
+    },
+    error => {
+      console.error('Error Enabling patient records:', error);
+      this.toastr.error('Error Enabling Patient Record', 'Medanta Clinic');
+      // Handle error as needed
+    }
+  );
+}
   
   
 }
