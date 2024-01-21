@@ -25,4 +25,13 @@ insertEmployee(patient:Patient):Observable<any>{
   return this.httpClient.post(environment.apiUrl+"api/RPatient",patient);
 }
 
+//Populating Patient Records
+getPatient(patientId:number):Observable<any>{
+    return this.httpClient.get(environment.apiUrl+'api/RPatient/'+patientId);
+}
+
+//Updating Patient Records
+updatePatient(patient1:Patient):Observable<any>{
+  return this.httpClient.put(environment.apiUrl+'api/RPatient',patient1);
+}
 }

@@ -63,7 +63,17 @@ export class AddPatientComponent implements OnInit {
 
   //Update Patient Record
   UpdatePatientRecords(form:NgForm){
+    console.log("updating");
+    console.log(form.value);
+    this.patientService.updatePatient(form.value).subscribe(
+      (result)=>{
+        console.log(result);
+        this.resetForm(form);
+        this.router.navigateByUrl('patient/patient-list');
+        this.toastr.success('Updated Successfully','Medanta Clinic');
 
+      }
+    )
   }
 
   //validation
