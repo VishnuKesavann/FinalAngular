@@ -51,6 +51,9 @@ export class BookappointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientId=this.route.snapshot.params['PatientId'];
+    // Retrieve isNewPatient from query parameters
+  this.isNewPatient = this.route.snapshot.queryParams['isNewPatient'] === 'true';
+  console.log(this.isNewPatient);
     console.log("Populating(details)");
     console.log(this.patientId);
     //subscriber
@@ -152,7 +155,8 @@ export class BookappointmentComponent implements OnInit {
     this.appointmentViewModel.DoctorId=this.selectedDoctorID;
     this.appointmentViewModel.AppointmentDate=form.value.AppointmentDate;
     this.appointmentViewModel.ConsultationFee=this.selectedDoctorConsultationFee;
-
+    
+    console.log(this.isNewPatient);
     console.log(form.value.PatientId);
     console.log(form.value);
     console.log(this.appointmentViewModel);

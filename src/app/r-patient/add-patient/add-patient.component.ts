@@ -45,9 +45,15 @@ export class AddPatientComponent implements OnInit {
     console.log("Inserting Patient");
     this.patientService.insertPatient(form.value).subscribe(
       (result)=>{
-        this.resetForm(form);
-        this.router.navigateByUrl('patient/patient-list');
+        // Capture the generated PatientId
+        const generatedPatientId = result;
+        console.log(generatedPatientId);
+        // Use the captured PatientId to navigate to the book-appointment page
+      this.router.navigate(['appointment/book-appointment', generatedPatientId], {
+        queryParams: { isNewPatient: true }
+      });
         this.toastr.success('Added Patient Successfully','Medanta Clinic');
+        this.resetForm(form);
       }
     )
   }

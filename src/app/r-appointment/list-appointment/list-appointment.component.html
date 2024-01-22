@@ -18,7 +18,7 @@
             <td>{{appointee.RegisterNo}}</td>
             <td>{{appointee.PatientName}}</td>
             <td>{{appointee.TokenNo}}</td>
-            <td>{{appointee.AppointmentDate}}</td>
+            <td>{{appointee.AppointmentDate | date:'dd-MMM-yyyy'}}</td>
             <td>{{appointee.StaffName}}</td>
             <td><button class="btn btn-success" (click)="openConfirmationDialog(appointee.AppointmentId)">Cancel</button></td>
         </tr>
