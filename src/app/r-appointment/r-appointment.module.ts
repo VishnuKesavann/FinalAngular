@@ -9,17 +9,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BillGenerationComponent } from './bill-generation/bill-generation.component';
+import { ListAppointmentComponent } from './list-appointment/list-appointment.component';
+import { RPatientModule } from '../r-patient/r-patient.module';
 
 
 @NgModule({
-  declarations: [AppointmentComponent, BookappointmentComponent, BillGenerationComponent],
+  declarations: [AppointmentComponent, BookappointmentComponent, BillGenerationComponent, ListAppointmentComponent],
   imports: [
     CommonModule,
     RAppointmentRoutingModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule,ReactiveFormsModule
+    MatDatepickerModule,ReactiveFormsModule,
+    RPatientModule
   ]
 })
 export class RAppointmentModule { }
