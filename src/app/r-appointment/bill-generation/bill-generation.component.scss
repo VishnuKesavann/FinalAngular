@@ -1,0 +1,80 @@
+.invoice-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-header {
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #0084a0 , #c6a869 );
+  padding: 10px;
+  color: #fff;
+}
+
+.invoice-details {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+}
+
+.section-header {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.section-header h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 40% 50%;
+  padding: 5px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: bold;
+  text-align: right;
+}
+
+.value {
+  text-align: left;
+  background-color: #f5f5f5;
+  padding: 5px;
+}
+
+hr {
+  display: none; /* We're using border-bottom on section-header and detail-row */
+}
+
+.tax-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tax-details p {
+  font-weight: bold;
+  margin: 0;
+}
+
+.total-amount {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
