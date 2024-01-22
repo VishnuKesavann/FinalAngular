@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Billviewmodel} from 'src/app/shared/billviewmodel'
 import {BillviewmodelService} from 'src/app/shared/billviewmodel.service'
 @Component({
@@ -12,7 +12,7 @@ import {BillviewmodelService} from 'src/app/shared/billviewmodel.service'
 export class BillGenerationComponent implements OnInit {
   BillId:number;
   bill_r:Billviewmodel=new Billviewmodel();
-  constructor(private route:ActivatedRoute,private BillingService:BillviewmodelService) { }
+  constructor(private route:ActivatedRoute,private BillingService:BillviewmodelService,private router:Router) { }
 
   ngOnInit(): void {
     this.BillId=this.route.snapshot.params['BillId'];
@@ -35,6 +35,8 @@ export class BillGenerationComponent implements OnInit {
       }
     )
   }
-
+  goBack(){
+    this.router.navigate(['/patient/patient-list']);
+  }
   
 }

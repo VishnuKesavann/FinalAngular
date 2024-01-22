@@ -78,3 +78,22 @@ hr {
   font-weight: bold;
   margin-top: 20px;
 }
+
+.back-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.back-button button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff; /* Change to your preferred color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button button:hover {
+  background-color: #0056b3; /* Change to a slightly darker shade on hover */
+}
