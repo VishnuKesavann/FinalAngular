@@ -43,7 +43,7 @@ export class AddPatientComponent implements OnInit {
   //Inserting Patient Records
   InsertPatientRecord(form:NgForm){
     console.log("Inserting Patient");
-    this.patientService.insertEmployee(form.value).subscribe(
+    this.patientService.insertPatient(form.value).subscribe(
       (result)=>{
         this.resetForm(form);
         this.router.navigateByUrl('patient/patient-list');

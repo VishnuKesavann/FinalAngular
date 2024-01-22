@@ -22,7 +22,7 @@ BindListPatients(){
   ).catch(error=>{console.error('Error: ',error)});
 }
 //for adding the patient
-insertEmployee(patient:Patient):Observable<any>{
+insertPatient(patient:Patient):Observable<any>{
   return this.httpClient.post(environment.apiUrl+"api/RPatient",patient);
 }
 

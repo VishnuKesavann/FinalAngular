@@ -77,7 +77,7 @@ disablePatientRecords(patientId: number) {
   );
 }
 
-//Disabling the Patient Records
+//enabling the Patient Records
 enablePatientRecords(patientId: number) {
   console.log('enabling patient records for ID:', patientId);
 
@@ -98,6 +98,10 @@ enablePatientRecords(patientId: number) {
     }
   );
 }
-  
+//bookAppointment
+bookAppointment(PatientId:number){
+  console.log("Booking Appointment");
+  this.router.navigate(['/appointment/book-appointment',PatientId]);
+}
   
 }

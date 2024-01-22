@@ -15,7 +15,7 @@
                         <th>Name</th>
                         <th>DOB</th>
                         <th>Phone Number</th>
-                        <th *ngIf="!showDisablePatient" colspan="3"></th>
+                        <th *ngIf="!showDisablePatient" colspan="4"></th>
                         <th *ngIf="showDisablePatient"></th>
                     </tr>
                 </thead>
@@ -29,6 +29,7 @@
                     <td *ngIf="!showDisablePatient"><button class="btn btn-primary" (click)="updatePatient(patient.PatientId)">Edit</button></td>
                     <td *ngIf="!showDisablePatient"><button class="btn btn-secondary" (click)="detailsPatient(patient.PatientId)">Details</button></td>
                     <td *ngIf="!showDisablePatient"><button class="btn btn-danger" (click)="openConfirmationDialog(patient.PatientId)">Disable</button></td>
+                    <td *ngIf="!showDisablePatient"><button class="btn btn-success" (click)="bookAppointment(patient.PatientId)">Book</button></td>
                     <td *ngIf="showDisablePatient"><button class="btn btn-success" (click)="openConfirmationDialog(patient.PatientId)">Enable</button></td>
                 </tr>
                </tbody> 
