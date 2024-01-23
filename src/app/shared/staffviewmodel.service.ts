@@ -1,9 +1,35 @@
 import { Injectable } from '@angular/core';
+import { Staffviewmodel } from './staffviewmodel';
+import { Department } from './department';
+import { Qualification } from './qualification';
+import { Userlogin } from './userlogin';
+import { Specialization } from './specialization';
+import { Role } from './role';
+import { Doctor } from './doctor';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StaffviewmodelService {
 
-  constructor() { }
+  staffviewmodel:Staffviewmodel[];
+  department:Department[];
+  qualification:Qualification[];
+  userlogin:Userlogin[];
+  specialization:Specialization[];
+  role:Role[];
+  doctor:Doctor[];
+  formData:Staffviewmodel=new Staffviewmodel();
+  constructor(private httpClient:HttpClient) { }
+
+  BindListMedicine()
+{
+  this.httpClient.get(environment.apiUrl+"api/AStaff")
+  .toPromise().then(response=>
+    {this.staffviewmodel=response as Staffviewmodel[];
+      console.log(this.staffviewmodel);
+    }).catch(error=>{console.error('Error: ',error)})
+}
 }
