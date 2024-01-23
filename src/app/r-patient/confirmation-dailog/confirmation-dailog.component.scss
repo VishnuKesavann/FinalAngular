@@ -1,0 +1,41 @@
+$primary: #007bff; 
+$secondary: #e9ecef;
+
+// Confirmation dialog styles
+.modal-content {
+    background-color: $secondary;
+    color: #333; // Adjust text color if needed
+    border-radius: 10px; // Add a subtle border radius
+    padding: 2rem; // Increase padding for better spacing
+  }
+  
+  .modal-header {
+    background-color: $primary;
+    color: #fff;
+    border-bottom: none;
+    padding: 1rem 1.5rem; // Adjust padding as needed
+  }
+  
+  .modal-footer {
+    background-color: $primary;
+    border-top: none;
+    padding: 1rem 1.5rem; // Adjust padding as needed
+  
+    button {
+      margin-right: 10px; // Add spacing between buttons
+    }
+  }
+  
+  .modal-title {
+    font-size: 1.5rem; // Slightly larger font size for the title
+    font-weight: bold;
+  }
+  
+  // Optional: Adjust button styles further
+  .btn-outline-danger {
+    border-color: #dc3545; // Adjust border color if needed
+  }
+  
+  .btn-success {
+    background-color: #28a745; // Adjust background color if needed
+  }

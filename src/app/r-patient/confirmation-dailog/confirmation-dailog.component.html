@@ -1,0 +1,14 @@
+<!-- confirmation-dialog.component.html -->
+<div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">{{ data.message }}</h4>
+      <button type="button" class="close" (click)="onCancel()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+      <button type="button" class="btn btn-success" (click)="onConfirm()">Confirm</button>
+    </div>
+  </div>
+  

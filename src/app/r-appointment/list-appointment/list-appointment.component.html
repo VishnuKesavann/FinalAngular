@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-dark">
+    <thead>
+        <tr>
+        <th>APPOINTMENT ID</th>
+        <th>PATIENT ID</th>
+        <th>Register Number</th>
+        <th>NAME</th>
+        <th>TOKEN NUMBER</th>
+        <th>APPOINTMENT DATE</th>
+        <th>DOCTOR</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let appointee of billviewmodelService.bill_rs| paginate:{itemsPerPage:7,currentPage:page}">
+            <td>{{appointee.AppointmentId}}</td>
+            <td>{{appointee.PatientId}}</td>
+            <td>{{appointee.RegisterNo}}</td>
+            <td>{{appointee.PatientName}}</td>
+            <td>{{appointee.TokenNo}}</td>
+            <td>{{appointee.AppointmentDate | date:'dd-MMM-yyyy'}}</td>
+            <td>{{appointee.StaffName}}</td>
+            <td><button class="btn btn-success" (click)="openConfirmationDialog(appointee.AppointmentId)">Cancel</button></td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-center mt-4">
+    <pagination-controls
+        class="pagination"
+        (pageChange)="page = $event"
+        previousLabel="Previous"
+        nextLabel="Next"
+        directionLinks="true"
+        autoHide="true"
+        maxSize="5">
+    </pagination-controls>
+</div>
+
