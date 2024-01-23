@@ -7,7 +7,7 @@ import { UpdateLabComponent } from './update-lab/update-lab.component';
 const routes: Routes = [
   {path:'list-lab',component:ListLabComponent},
   {path:'add-lab',component:AddLabComponent},
-  {path:'update-lab/:labId',component:UpdateLabComponent}
+  {path:'lab/update-lab/:labId',component:UpdateLabComponent}
 ];
 
 @NgModule({
