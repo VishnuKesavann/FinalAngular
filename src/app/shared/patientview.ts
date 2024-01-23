@@ -7,4 +7,5 @@ export class Patientview {
     BloodGroup:string=null;
     PhoneNumber:number=0;
     CheckUpStatus:string=null;
+    PatientId:number=0;
 }
