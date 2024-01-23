@@ -18,11 +18,13 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-dailog.component';
 import { DisabledPatientListComponent } from './disabled-patient-list/disabled-patient-list.component';
+import {NgxPaginationModule} from 'ngx-pagination'
 @NgModule({
   declarations: [PatientComponent, ListPatientComponent, AddPatientComponent, EditPatientComponent, DetailsPatientComponent, ConfirmationDailogComponent, DisabledPatientListComponent],
   imports: [
     CommonModule,
     RPatientRoutingModule,
+    NgxPaginationModule,
     FormsModule,
     MatInputModule,
     MatButtonModule,

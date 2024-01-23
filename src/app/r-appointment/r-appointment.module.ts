@@ -11,13 +11,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { BillGenerationComponent } from './bill-generation/bill-generation.component';
 import { ListAppointmentComponent } from './list-appointment/list-appointment.component';
 import { RPatientModule } from '../r-patient/r-patient.module';
-
+import {NgxPaginationModule} from 'ngx-pagination'
 
 @NgModule({
   declarations: [AppointmentComponent, BookappointmentComponent, BillGenerationComponent, ListAppointmentComponent],
   imports: [
     CommonModule,
     RAppointmentRoutingModule,
+    NgxPaginationModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,

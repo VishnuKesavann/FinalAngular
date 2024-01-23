@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                <tbody>
-                <tr *ngFor="let patient of patientservice.patients">
+                <tr *ngFor="let patient of patientservice.patients | paginate:{itemsPerPage:7,currentPage:page}">
                     <td style="display: none;">{{patient.PatientId}}</td>
                     <td>{{patient.RegisterNo}}</td>
                     <td>{{patient.PatientName}}</td> 
@@ -34,6 +34,17 @@
                 </tr>
                </tbody> 
             </table>
+            <div class="d-flex justify-content-center mt-4">
+                <pagination-controls
+                    class="pagination"
+                    (pageChange)="page = $event"
+                    previousLabel="Previous"
+                    nextLabel="Next"
+                    directionLinks="true"
+                    autoHide="true"
+                    maxSize="5">
+                </pagination-controls>
+            </div>
         </div>
     </div>
    

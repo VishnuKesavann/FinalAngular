@@ -10,7 +10,9 @@ import {  ToastrService } from 'ngx-toastr';
   styleUrls: ['./list-patient.component.scss']
 })
 export class ListPatientComponent implements OnInit {
+  
   showDisablePatient:boolean=false;
+  page:number=1;
   constructor(public patientservice:PatientService,private router:Router,private dialog: MatDialog,private toastr:ToastrService,private route:ActivatedRoute ) { }
 
   ngOnInit(): void {

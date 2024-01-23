@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let appointee of billviewmodelService.bill_rs">
+        <tr *ngFor="let appointee of billviewmodelService.bill_rs| paginate:{itemsPerPage:7,currentPage:page}">
             <td>{{appointee.AppointmentId}}</td>
             <td>{{appointee.PatientId}}</td>
             <td>{{appointee.RegisterNo}}</td>
@@ -24,4 +24,15 @@
         </tr>
     </tbody>
 </table>
-<p>list-appointment works!</p>
+<div class="d-flex justify-content-center mt-4">
+    <pagination-controls
+        class="pagination"
+        (pageChange)="page = $event"
+        previousLabel="Previous"
+        nextLabel="Next"
+        directionLinks="true"
+        autoHide="true"
+        maxSize="5">
+    </pagination-controls>
+</div>
+

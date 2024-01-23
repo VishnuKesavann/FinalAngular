@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./list-appointment.component.scss']
 })
 export class ListAppointmentComponent implements OnInit {
-
+  page:number=1;
   constructor(public billviewmodelService:BillviewmodelService,public dialog: MatDialog,private router:Router,private toastr:ToastrService) { }
 
   ngOnInit(): void {
