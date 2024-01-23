@@ -37,7 +37,7 @@ export class AddStaffComponent implements OnInit {
         console.log(result);
         this.resetForm(form);
         this.toastr.success('Added successfully', 'EMS APP 2024');
-        this.router.navigate(['staff/list-staff']);
+        this.router.navigate(['/staff/list-staff']);
       }
     );
   }
