@@ -45,4 +45,5 @@ updateLab(lab:Laboratory):Observable<any>{
 deleteLab(id:number){
   return this.httpClient.delete(environment.apiUrl+"api/ALaboratory/"+id);
 }
+
 }

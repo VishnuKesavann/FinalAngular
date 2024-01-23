@@ -16,17 +16,26 @@ export class UpdateLabComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private labservice:LaboratoryService) { }
 
-  ngOnInit(): void {
-    this.labId=this.route.snapshot.params['labId'];
-    this.labservice.getLab(this.labId)
-    .subscribe(data => {
-      console.log(data);
-      this.lab = data;
-      this.labservice.formData = Object.assign({}, data);
-    }, error => console.log(error));
-
-  }
-
+    ngOnInit(): void {
+      this.labId = +this.route.snapshot.params['labId']; // Convert to a number
+      if (isNaN(this.labId)) {
+        // Handle the case when labId is not a valid number
+        console.error('Invalid labId:', this.labId);
+        return;
+      }
+    
+      this.labservice.getLab(this.labId)
+        .subscribe(
+          (data: any) => {
+            console.log(data);
+            this.lab = data;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+    
   }
 
 

@@ -1,39 +1,34 @@
 <div class="container">
     <div class="header">
-        <div class="form-control">
-            <input class="form-control" type="text"placeholder="search text here..."
-            [(ngModel)]="filter">
-        </div><br>
-        <a [routerLink]="['../add-lab']" class="btn btn-outline-success" style="float: right; margin-bottom: 30px;">Add LabTest</a>
+      <div class="form-control">
+        <input class="form-control" type="text" placeholder="search text here..." [(ngModel)]="filter" (input)="applyFilter()">
+      </div><br>
+      <a [routerLink]="['../add-lab']" class="btn btn-outline-success" style="float: right; margin-bottom: 30px;">Add LabTest</a>
     </div>
-
-<table class="table table-striped table-hover">
-    <thead>
+  
+    <table class="table table-striped table-hover">
+      <thead>
         <tr>
-            <th>TestId</th>
-            <th>TestName</th>
-            <th>LowRange</th>
-            <th>HighRange</th>
-            <th> TestPrice</th>
-           
-            
+          <th>TestId</th>
+          <th>TestName</th>
+          <th>LowRange</th>
+          <th>HighRange</th>
+          <th>TestPrice</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let lab of laboratoryService.laboratory">
-            <td>{{lab.TestId}}</td>
-            <td>{{lab.TestName}}</td>
-            <td>{{lab.LowRange}}</td>
-            <td>{{lab.HighRange}}</td>
-            <td>{{lab.TestPrice}}</td>
-           
-
-            <td>
-                <button class="btn btn-sm btn-outline-primary"(click)="updateLab(lab.labId)" >Edit</button>&nbsp;
-                <button class="btn btn-sm btn-outline-danger" >Delete</button>
-                
-            </td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lab of filteredLaboratory">
+          <td>{{lab.TestId}}</td>
+          <td>{{lab.TestName}}</td>
+          <td>{{lab.LowRange}}</td>
+          <td>{{lab.HighRange}}</td>
+          <td>{{lab.TestPrice}}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" (click)="updateLab(lab.TestId)">Edit</button>&nbsp;
+            <button class="btn btn-sm btn-outline-danger" style="margin-left:25px" (click)="deleteLab(lab.TestId)">Delete</button>
+          </td>
         </tr>
-    </tbody>
-</table>
-
+      </tbody>
+    </table>
+  </div>
+  

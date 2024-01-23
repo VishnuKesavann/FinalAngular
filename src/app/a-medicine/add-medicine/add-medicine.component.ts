@@ -14,8 +14,8 @@ import { NgForm } from '@angular/forms';
 export class AddMedicineComponent implements OnInit {
 
   constructor(public medicineservice:MedicineService,
-    private router:Router,
-    private toastr:ToastrService) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.medicineservice.formData=new Medicine();
@@ -31,44 +31,43 @@ export class AddMedicineComponent implements OnInit {
     
  
    }
-   else {
-     //alert("EmpId is greater")
-     console.log(form.value);
-     this.UpdateRecord(form);
+  //  else {
+  //    //alert("EmpId is greater")
+  //    console.log(form.value);
+  //    this.UpdateRecord(form);
+  //  }
    }
-   }
- 
+
    InsertRecord(form: NgForm){
-     console.log("Inserting");
-     this.medicineservice.insertLabTest(form.value).subscribe(
-       (result)=>{
-         console.log(result);
-         
-         this.resetForm(form);
-         this.toastr.success('Added succesfully', 'EMS APP 2024');
-         this.router.navigate(['lab/list-lab']);
-       }
-     )
-   }
- 
- 
- 
-   UpdateRecord(form: NgForm){
-     console.log("Updating");
-     this.medicineservice.updateLab(form.value).subscribe(
-       (result) => {
-         console.log(result);
-         this.resetForm(form);
-         this.toastr.success('Updated succesfully', 'EMP APP 2024');
-         this.router.navigate(['medicine/list-medicine']);
-       }
-     )
-   }
- 
-   resetForm(form: NgForm) {
-     if (form != null) {
-       form.resetForm();
-     }
-   }
+    console.log("Inserting");
+    this.medicineservice.insertMedicine(form.value).subscribe(
+      (result)=>{
+        console.log(result);
+        
+        this.resetForm(form);
+        this.toastr.success('Added succesfully', 'EMS APP 2024');
+        this.router.navigate(['a-medicine/list-medicine']);
+      }
+    )
+  }
+
+
+  // UpdateRecord(form: NgForm){
+  //   console.log("Updating");
+  //   this.medicineservice.updateMedicine(form.value).subscribe(
+  //     (result) => {
+  //       console.log(result);
+  //       this.resetForm(form);
+  //       this.toastr.success('Updated succesfullu', 'EMP APP 2024');
+  //       this.router.navigate(['a-medicine/list-medicine']);
+  //     }
+  //   )
+  // }
+
+  resetForm(form: NgForm) {
+    if (form != null) {
+      form.resetForm();
+    }
+  }
 
 }

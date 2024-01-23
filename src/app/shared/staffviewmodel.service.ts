@@ -15,42 +15,35 @@ import { Observable } from 'rxjs';
 })
 export class StaffviewmodelService {
 
-  staffviewmodel:Staffviewmodel[];
-  department:Department[];
-  qualification:Qualification[];
-  userlogin:Userlogin[];
-  specialization:Specialization[];
-  role:Role[];
-  doctor:Doctor[];
+  staffviewmodel: Staffviewmodel[];
+  department: Department[];
+  qualification: Qualification[];
+  userlogin: Userlogin[];
+  specialization: Specialization[];
+  role: Role[];
+  doctor: Doctor[];
 
-  formData:Staffviewmodel=new Staffviewmodel();
-  constructor(private httpClient:HttpClient) { }
+  formData: Staffviewmodel = new Staffviewmodel();
+  constructor(private httpClient: HttpClient) { }
 
-  BindListMedicine()
-{
-  this.httpClient.get(environment.apiUrl+"api/AStaff")
-  .toPromise().then(response=>
-    {this.staffviewmodel=response as Staffviewmodel[];
-      console.log(this.staffviewmodel);
-    }).catch(error=>{console.error('Error: ',error)})
-}
+  BindListMedicine() {
+    this.httpClient.get(environment.apiUrl + "api/AStaff")
+      .toPromise().then(response => {
+        this.staffviewmodel = response as Staffviewmodel[];
+        console.log(this.staffviewmodel);
+      }).catch(error => { console.error('Error: ', error) });
+  }
 
-insertstaff(staffVm: Staffviewmodel): Observable<any> {
-  return this.httpClient.post(environment.apiUrl + "api/AStaff",staffVm);
+  insertstaff(staffVm: Staffviewmodel): Observable<any> {
+    return this.httpClient.post(environment.apiUrl + "api/AStaff", staffVm);
+  }
 
-}
+  // Get staff
+  getstaff(StaffId: number): Observable<any> {
+    return this.httpClient.get(environment.apiUrl + "api/AStaff/" + StaffId);
+  }
 
-//Get staff
-getstaff(StaffId:number):Observable<any>
-{
-  return this.httpClient.get(environment.apiUrl+"api/AStaff/"+StaffId)
-}
-
-// updatestaff(sta:Staffviewmodel):Observable<any>{
-//   return this.httpClient.put(environment.apiUrl+"api/AStaff/",sta)
-// }
-// deleteLab(id:number){
-//   return this.httpClient.delete(environment.apiUrl+"api/AStaff/"+id);
-// }
-
+  deletestaff(id: number): Observable<any> {
+    return this.httpClient.delete(environment.apiUrl + "api/AStaff/" + id);
+  }
 }

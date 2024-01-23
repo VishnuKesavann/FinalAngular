@@ -5,13 +5,16 @@ import { AMedicineRoutingModule } from './a-medicine-routing.module';
 import { MedicineComponent } from './medicine/medicine.component';
 import { ListMedicineComponent } from './medicine/list-medicine/list-medicine.component';
 import { AddMedicineComponent } from './add-medicine/add-medicine.component';
+import { FormsModule } from '@angular/forms';
+import { UpdateMedicineComponent } from './update-medicine/update-medicine.component';
 
 
 @NgModule({
-  declarations: [MedicineComponent, ListMedicineComponent, AddMedicineComponent],
+  declarations: [MedicineComponent, ListMedicineComponent, AddMedicineComponent, UpdateMedicineComponent],
   imports: [
     CommonModule,
-    AMedicineRoutingModule
+    AMedicineRoutingModule,
+    FormsModule
   ]
 })
 export class AMedicineModule { }

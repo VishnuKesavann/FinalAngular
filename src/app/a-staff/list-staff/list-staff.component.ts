@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {StaffviewmodelService} from 'src/app/shared/staffviewmodel.service';
+import { StaffviewmodelService } from 'src/app/shared/staffviewmodel.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-staff',
@@ -8,14 +9,25 @@ import {StaffviewmodelService} from 'src/app/shared/staffviewmodel.service';
 })
 export class ListStaffComponent implements OnInit {
   filter: string = '';
-  constructor(public staffviewmodelService: StaffviewmodelService) { }
+
+  constructor(public staffviewmodelService: StaffviewmodelService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-
-    console.log("welcome to life cycle hook")
+    console.log("welcome to life cycle hook");
     this.staffviewmodelService.BindListMedicine();
-
   }
 
+  deleteStaff(id: number) {
+    if (confirm('Are you sure to delete this record?')) {
+      this.staffviewmodelService.deletestaff(id).subscribe(
+        response => {
+          this.staffviewmodelService.BindListMedicine();
+          this.toastr.success('Deleted successfully', 'CMSApp 2023');
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+  }
 }
-
