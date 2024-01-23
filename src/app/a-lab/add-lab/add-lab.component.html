@@ -1,0 +1,66 @@
+<br>
+<form name="empform" #form="ngForm" autocomplete="false" (ngSubmit)="onSubmit(form)">
+
+    <!-- DOM element should be equal to class property name because it is 
+    paswsing as the key when sending data as object -->
+
+    <input  name="TestId" [(ngModel)]="labservice.formData.TestId">
+
+    <!-- type="hidden" -->
+
+    <div class="form-group">
+    <label>Test Name &nbsp;</label>
+        <input name="TestName" #TestName="ngModel" [(ngModel)]="labservice.formData.TestName"
+            class="form-control" placeholder="Enter Test Name" minlength="3" maxlength="25" required
+            [ngClass]="{'is-invalid':TestName.touched && TestName.invalid}">
+
+        <div class="Validation-error" *ngIf="TestName.touched && TestName.invalid">
+            <div>Full name is required</div>
+        </div>
+    </div>
+    <br>
+
+
+    <div class="form-group">
+        <label>Low Range &nbsp;</label>
+            <input name="LowRange" #LowRange="ngModel" [(ngModel)]="labservice.formData.LowRange"
+                class="form-control" placeholder="Enter Low Range" minlength="3" maxlength="25" required
+                [ngClass]="{'is-invalid':LowRange.touched && LowRange.invalid}">
+    
+            <div class="Validation-error" *ngIf="LowRange.touched && LowRange.invalid">
+                <div>Low Range is required</div>
+            </div>
+        </div>
+        <br>
+
+        
+        <div class="form-group">
+            <label>High Range&nbsp;</label>
+                <input name="HighRange" #HighRange="ngModel" [(ngModel)]="labservice.formData.HighRange"
+                    class="form-control" placeholder="Enter High Range" minlength="3" maxlength="25" required
+                    [ngClass]="{'is-invalid':HighRange.touched && HighRange.invalid}">
+        
+                <div class="Validation-error" *ngIf="HighRange.touched && HighRange.invalid">
+                    <div>High Range is required</div>
+                </div>
+            </div>
+            <br>
+
+            
+            <div class="form-group">
+                <label>Price&nbsp;</label>
+                    <input name="Price" #Price="ngModel" [(ngModel)]="labservice.formData.TestPrice"
+                        class="form-control" placeholder="Enter Price" minlength="3" maxlength="25" required
+                        [ngClass]="{'is-invalid':Price.touched && Price.invalid}">
+            
+                    <div class="Validation-error" *ngIf="Price.touched && Price.invalid">
+                        <div>Price is required</div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+
+                    <!-- Dirty is the tearm used to flag if the data or state has changed -->
+                    <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-lg btn-primary form-control">Submit</button>
+                </div>
+                </form>
