@@ -8,6 +8,7 @@ import { Role } from './role';
 import { Doctor } from './doctor';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class StaffviewmodelService {
   specialization:Specialization[];
   role:Role[];
   doctor:Doctor[];
+
   formData:Staffviewmodel=new Staffviewmodel();
   constructor(private httpClient:HttpClient) { }
 
@@ -32,4 +34,23 @@ export class StaffviewmodelService {
       console.log(this.staffviewmodel);
     }).catch(error=>{console.error('Error: ',error)})
 }
+
+insertstaff(staffVm: Staffviewmodel): Observable<any> {
+  return this.httpClient.post(environment.apiUrl + "api/AStaff",staffVm);
+
+}
+
+//Get staff
+getstaff(StaffId:number):Observable<any>
+{
+  return this.httpClient.get(environment.apiUrl+"api/AStaff/"+StaffId)
+}
+
+// updatestaff(sta:Staffviewmodel):Observable<any>{
+//   return this.httpClient.put(environment.apiUrl+"api/AStaff/",sta)
+// }
+// deleteLab(id:number){
+//   return this.httpClient.delete(environment.apiUrl+"api/AStaff/"+id);
+// }
+
 }

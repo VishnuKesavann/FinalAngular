@@ -7,7 +7,7 @@ import {StaffviewmodelService} from 'src/app/shared/staffviewmodel.service';
   styleUrls: ['./list-staff.component.scss']
 })
 export class ListStaffComponent implements OnInit {
-
+  filter: string = '';
   constructor(public staffviewmodelService: StaffviewmodelService) { }
 
   ngOnInit(): void {

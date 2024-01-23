@@ -17,7 +17,7 @@ export class ListLabComponent implements OnInit {
   updateLab(testId:number){
     console.log("hello");
     console.log(testId);
-    this.router.navigate(['edit-lab',testId])
+    this.router.navigate(['update-lab', testId]);
  }
 
 }
