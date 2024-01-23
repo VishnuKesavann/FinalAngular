@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Records</title>
+  <!-- Include Bootstrap CSS (add the appropriate link to your project) -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Add any additional custom styles here */
+    body {
+      padding-top: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2 class="mb-4" style = "text-align: center; margin-top: 20px;">Appointments</h2>
+    <table class="table table-bordered table-striped" style="width: 1000px; margin: auto;">
+      <thead class="thead-dark">
+        <tr>
+          <th>AppointmentId</th>
+          <th>Token No</th>
+          <th>PatientName</th>
+          <th>AppointmentDate</th>
+          <!-- <th>CheckUpStatus</th> -->
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of todayapp.appointments">
+          <td>{{ p.AppointmentId }}</td>
+          <td>{{ p.TokenNo }}</td>
+          <td>{{ p.PatientName }}</td>
+          <td>{{ p.AppointmentDate | date:'dd-MMM-yyyy' }}</td>
+          <!-- <td>{{ p.CheckUpStatus }}</td> -->
+          <td>
+            <button class="btn btn-info" class="btn btn-outline-primary" (click)="goto(p.AppointmentId)">
+                View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <!-- Include Bootstrap JS and Popper.js (add the appropriate links to your project) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

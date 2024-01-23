@@ -28,6 +28,9 @@ const routes: Routes = [
   loadChildren:()=>import('./a-staff/a-staff.module').then(x=>x.AStaffModule)
   },
 
+
+{
+  path: '', redirectTo: 'doctor/list', pathMatch: 'full' },
 {path:'doctor',component:DoctorComponent,
   loadChildren:()=>import('./d-doctor/d-doctor.module').then(x=>x.DDoctorModule)
   },
