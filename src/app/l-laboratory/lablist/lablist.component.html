@@ -17,10 +17,13 @@
         <td>{{lab.TestName}}</td>
         <td>{{lab.LabTestStatus}}</td>
         <td>
-            <button class="btn btn-info">Generate</button>
+            <button class="btn btn-info"(click)="generateReport(lab)">Generate</button>
         </td>
     </tr>
     </tbody>
 </table>
+<div><button (click)="goBack()">Back</button></div>
+  
+
 
 

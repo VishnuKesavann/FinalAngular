@@ -8,6 +8,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { LablistComponent } from './l-laboratory/lablist/lablist.component';
+import { LabaddComponent } from './l-laboratory/labadd/labadd.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [],
