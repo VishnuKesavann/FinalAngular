@@ -32,6 +32,7 @@ export class BookappointmentComponent implements OnInit {
   isNewPatient:boolean=false;
   specializations:any[]=[];
   doctors:any[]=[];
+  
   minDate:Date=new Date();
   maxDate:Date=new Date();
   // Use BehaviorSubject to store the doctors and initialize with an empty array
@@ -62,6 +63,7 @@ export class BookappointmentComponent implements OnInit {
   console.log(this.isNewPatient);
     console.log("Populating(details)");
     console.log(this.patientId);
+    
     //subscriber
     this.patientService.getPatient(this.patientId).subscribe(
       data=>
@@ -179,7 +181,7 @@ export class BookappointmentComponent implements OnInit {
         console.log('Appointment Booked');
         this.router.navigate(['appointment/bill-generation',this.appointmentViewModel.BillId]);
         this.toastr.success('Appointment Booked Successfully','Medanta Clinic');
-
+        this.bookingService.departments=null;
       },error=>{
         console.error('Error Booking Appointment:',error);
          // Log the response body for more details
@@ -187,6 +189,7 @@ export class BookappointmentComponent implements OnInit {
       console.error('Error Details:', error.error);
       this.router.navigate(['patient/patient-list']);
       this.toastr.error(error.error,'Medanta Clinic');
+      this.bookingService.departments=null;
     }
       }
     );
