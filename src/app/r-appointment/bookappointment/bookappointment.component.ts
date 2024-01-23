@@ -13,6 +13,8 @@ import { AppointmentViewmodel } from 'src/app/shared/appointment-viewmodel';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, BehaviorSubject, interval } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-bookappointment',
@@ -28,10 +30,14 @@ export class BookappointmentComponent implements OnInit {
   selectedDoctorID:number|null=null;
   selectedDoctorConsultationFee: number | null = null;
   isNewPatient:boolean=false;
-  
+  specializations:any[]=[];
+  doctors:any[]=[];
   minDate:Date=new Date();
   maxDate:Date=new Date();
-
+  // Use BehaviorSubject to store the doctors and initialize with an empty array
+  private doctorsSubject = new BehaviorSubject<Doctorviewmodel[]>([]);
+  // Expose the doctors as an observable
+  doctors$ = this.doctorsSubject.asObservable();
   constructor(private patientService:PatientService,private route:ActivatedRoute,private router:Router,public bookingService:AppointmentViewmodelService,private dateAdapter:DateAdapter<Date>,private cdr: ChangeDetectorRef,private fb:FormBuilder,private toastr:ToastrService) {
       // Set the minimum date to today
       this.minDate = this.dateAdapter.today();
@@ -82,6 +88,7 @@ export class BookappointmentComponent implements OnInit {
 
   //Filtering Specialization By DepartmentId
   onDepartmentChange() {
+    this.specializations=[];
     console.log("Entering On Department Changes")
     if (this.appointmentForm.get('DepartmentId').value !== 0) {
       const departmentId = this.appointmentForm.get('DepartmentId').value;
@@ -90,7 +97,9 @@ export class BookappointmentComponent implements OnInit {
         response => {
           console.log('Specializations:', response);
           this.bookingService.specializations = [...response] as Specialization[]; // Create a new array
+          this.specializations=this.bookingService.specializations;
           this.bookingService.BindDoctorBySpecializationId(this.appointmentForm.get('SpecializationId').value);
+          this.doctors=[];
         },
         error => {
           console.error('Error fetching specializations: ', error);
@@ -100,6 +109,7 @@ export class BookappointmentComponent implements OnInit {
   }
   
   onSpecializationChange() {
+    console.log("specializaiton changes")
     if (this.appointmentForm.get('SpecializationId').value !== 0) {
       const specializationId = this.appointmentForm.get('SpecializationId').value;
   
@@ -107,6 +117,7 @@ export class BookappointmentComponent implements OnInit {
         response => {
           console.log('Doctors:', response);
           this.bookingService.doctorviewModal = [...response] as Doctorviewmodel[]; // Create a new array
+          this.doctors=this.bookingService.doctorviewModal;
           this.selectedDoctor = null; // Reset the selected doctor when specialization changes
           // Trigger change detection
           this.cdr.detectChanges();
@@ -122,22 +133,20 @@ export class BookappointmentComponent implements OnInit {
       // Trigger change detection
       this.cdr.detectChanges();
     }
-  }
-
+  } 
   onDoctorChange() {
     console.log("Doctor change");
   
-    const selectedDoctorId = this.appointmentForm.get('DoctorId').value;
+    const selectedDoctor = this.appointmentForm.get('DoctorId').value;
+    
+    // Log the current value of selectedDoctor
+    console.log("Selected Doctor:", selectedDoctor);
   
-    // Log the current value of selectedDoctorId
-    console.log("Selected Doctor ID:", selectedDoctorId);
-  
-    const selectedDoctor = selectedDoctorId;
-    console.log(selectedDoctor);
-    if (selectedDoctor && selectedDoctor.DoctorId) {
+    if (selectedDoctor) {
       // Set the selectedDoctorConsultationFee
       this.selectedDoctorID = selectedDoctor.DoctorId;
       this.selectedDoctorConsultationFee = selectedDoctor.ConsultationFee;
+      console.log("Doctor ID:", selectedDoctor.DoctorId);
       console.log("Consultation Fee:", selectedDoctor.ConsultationFee);
     } else {
       // Handle the case where the selectedDoctor is not found in the updated list
@@ -146,6 +155,7 @@ export class BookappointmentComponent implements OnInit {
       this.selectedDoctor = null;
     }
   }
+  
   
   
   onSubmit(form:FormGroup){

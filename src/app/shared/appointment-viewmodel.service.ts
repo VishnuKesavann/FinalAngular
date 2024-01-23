@@ -34,8 +34,8 @@ export class AppointmentViewmodelService {
   BindSpecializationByDepartmentId(deparmentId:number):Observable<any>{
     return this.httpClient.get(environment.apiUrl+'api/RAppoinment/GetSpecializationByDepartmentId/'+deparmentId);
   }
-  //Bind All Doctors By SpecializationId
-  BindDoctorBySpecializationId(specializationId:number):Observable<any>{
+   //Bind All Doctors By SpecializationId
+   BindDoctorBySpecializationId(specializationId:number):Observable<any>{
     return this.httpClient.get(environment.apiUrl+'api/RAppoinment/GetDoctorBySpecializationId/'+specializationId);
   }
 
