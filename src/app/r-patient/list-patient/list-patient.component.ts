@@ -4,6 +4,7 @@ import {PatientService} from 'src/app/shared/patient.service'
 import { ConfirmationDailogComponent } from '../confirmation-dailog/confirmation-dailog.component';
 import { MatDialog } from '@angular/material/dialog';
 import {  ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-list-patient',
   templateUrl: './list-patient.component.html',
@@ -13,13 +14,102 @@ export class ListPatientComponent implements OnInit {
   
   showDisablePatient:boolean=false;
   page:number=1;
-  constructor(public patientservice:PatientService,private router:Router,private dialog: MatDialog,private toastr:ToastrService,private route:ActivatedRoute ) { }
+  searchForm:FormGroup;
+  phoneNumber:number;
+  
+  constructor(public patientservice:PatientService,private router:Router,private dialog: MatDialog,private toastr:ToastrService,private route:ActivatedRoute ,private formbuilder:FormBuilder ) { }
 
   ngOnInit(): void {
      console.log('Welcome to List Life Cycle Hook');
      this.showDisablePatient=this.route.snapshot.routeConfig.path==='disabledpatient-list'
      this.showDisablePatient ? this.patientservice.BindDisabledPatientRecords() : this.patientservice.BindListPatients();//if true show the disable-patient records else list active patient
-  }
+      this.searchForm=this.formbuilder.group({
+        searchCriteria:['']
+      });
+    }
+    //Search Patient Records
+    searchPatients() {
+      const criteria = this.searchForm.get('searchCriteria').value;
+  
+      // Determine if the criteria is a register number or phone number
+      const isRegisterNumber =
+        /\d/.test(criteria) && /[a-zA-Z]/.test(criteria);
+      const isPhoneNumber = /^\d+$/.test(criteria);
+      if (!criteria) {
+        // Reload the default list
+        this.showDisablePatient
+          ? this.patientservice.BindDisabledPatientRecords()
+          : this.patientservice.BindListPatients();
+        return;
+      }
+      if(!this.showDisablePatient){
+        if (isRegisterNumber) {
+          this.phoneNumber = 0;
+          // Search by register number
+          this.patientservice.searchPatients(criteria, this.phoneNumber).subscribe(
+            (searchResults) => {
+              this.patientservice.patients = searchResults;
+            },
+            (error) => {
+              console.error('Error searching patients:', error);
+              this.toastr.error(error.error,'Medanta Clinic');
+            }
+          );
+        } else if (isPhoneNumber) {
+          // Search by phone number
+          const phoneNumber = +criteria; // Convert to number
+          this.patientservice.searchPatients(null, phoneNumber).subscribe(
+            (searchResults) => {
+              this.patientservice.patients = searchResults;
+            },
+            (error) => {
+              console.error('Error searching patients:', error);
+              this.toastr.error(error.error,'Medanta Clinic');
+            }
+          );
+        } else {
+          // Handle invalid input or provide appropriate feedback to the user
+          console.log(
+            'Invalid input. Please enter a valid register number or phone number.'
+          );
+          this.toastr.error('Invalid input. Please enter a valid register number or phone number.','Medanta Clinic');
+        }
+      }
+      else if(this.showDisablePatient){
+        if (isRegisterNumber) {
+          this.phoneNumber = 0;
+          // Search by register number
+          this.patientservice.searchDisabledPatients(criteria, this.phoneNumber).subscribe(
+            (searchResults) => {
+              this.patientservice.patients = searchResults;
+            },
+            (error) => {
+              console.error('Error searching patients:', error);
+              this.toastr.error(error.error,'Medanta Clinic');
+            }
+          );
+        } else if (isPhoneNumber) {
+          // Search by phone number
+          const phoneNumber = +criteria; // Convert to number
+          this.patientservice.searchDisabledPatients(null, phoneNumber).subscribe(
+            (searchResults) => {
+              this.patientservice.patients = searchResults;
+            },
+            (error) => {
+              console.error('Error searching patients:', error);
+              this.toastr.error(error.error,'Medanta Clinic');
+            }
+          );
+        } else {
+          // Handle invalid input or provide appropriate feedback to the user
+          console.log(
+            'Invalid input. Please enter a valid register number or phone number.'
+          );
+          this.toastr.error('Invalid input. Please enter a valid register number or phone number.','Medanta Clinic');
+        }
+      }
+     
+    }
   //Edit Patient Records
   updatePatient(PatientId:number){
     console.log(PatientId);
