@@ -27,10 +27,10 @@ export class LablistComponent implements OnInit {
       this.labtestvmService.formData_L.TestName = lab.TestName;
 
     // Navigate to the lab report form
-    this.router.navigate(['/labtech/add',lab]);
+    this.router.navigate(['/labtechnician/add',lab]);
   }
   goBack() {
-    this.router.navigate(['/labtech/']);
+    this.router.navigate(['/labtechnician/']);
   }
 
 }

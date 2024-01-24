@@ -68,7 +68,7 @@ export class UserloginComponent implements OnInit {
 
           if (response == null) {
             this.error = "Invalid username and/or password";
-          } else if (response.rId == 300) {
+          } else if (response.rId == 1303) {
             this.router.navigateByUrl('staff/list-staff');
             console.log('Admin');
           } else if (response.rId == 1302) {
@@ -84,7 +84,7 @@ export class UserloginComponent implements OnInit {
             console.log('Pharmasist');
           } 
           else if (response.rId == 302) {
-            this.router.navigateByUrl('labtech/');
+            this.router.navigateByUrl('labtechnician/list-lab');
             console.log('Labtech');
           }else {
             this.error = "Sorry, you are not allowed to access the system";

@@ -22,7 +22,7 @@ export class BillComponent implements OnInit {
     window.print();
   }
   goBack() {
-    this.router.navigate(['/labtech/report']);
+    this.router.navigate(['/labtechnician/report']);
   }
   generateReport(lab) {
     

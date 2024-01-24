@@ -21,7 +21,7 @@ export class ReportlistComponent implements OnInit {
      
 
   // Navigate to the lab report form
-  this.router.navigate(['/labtech/bill'])
+  this.router.navigate(['/labtechnician/bill'])
   }
   ViewReport(lab:any){
     this.LReportVM.formData_L.ReportId = lab.ReportId;
@@ -33,9 +33,11 @@ export class ReportlistComponent implements OnInit {
      this.LReportVM.formData_L.TestResult = lab.TestResult;
      this.LReportVM.formData_L.Remarks = lab.Remarks;
      
-    this.router.navigate(['/labtech/view'])
+    this.router.navigate(['/labtechnician/view'])
 
   }
-  
+  goBack() {
+    this.router.navigate(['/labtechnician/list-lab']);
+  }
 
 }

@@ -16,7 +16,7 @@ export class LabtestvmService {
 
   //
   BindListEmployee(){
-    this.httpClient.get(environment.apiUrl +"api/LabReport")
+    this.httpClient.get(environment.apiUrl + "api/LabReport")
     .toPromise().then(response => {
       this.labtestvm = response as Labtestvm[];
       console.log(this.labtestvm);
