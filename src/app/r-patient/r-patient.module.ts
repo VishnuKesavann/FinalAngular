@@ -5,7 +5,7 @@ import { RPatientRoutingModule } from './r-patient-routing.module';
 import { PatientComponent } from './patient/patient.component';
 import { ListPatientComponent } from './list-patient/list-patient.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,6 +26,7 @@ import {NgxPaginationModule} from 'ngx-pagination'
     RPatientRoutingModule,
     NgxPaginationModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,

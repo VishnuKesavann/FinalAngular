@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Patient } from './patient';
-import {HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import {HttpClient,HttpHeaders,HttpParams } from '@angular/common/http'
+import { Observable,throwError } from 'rxjs';
 import {environment} from 'src/environments/environment'
 import { error } from '@angular/compiler/src/util';
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -56,4 +57,42 @@ BindDisabledPatientRecords(){
 enablePatient(patientId:number){
   return this .httpClient.patch(environment.apiUrl+'api/RPatient/Enable/'+patientId,{});
 }
+//Search by PatientRegister Number or Phone Number
+searchPatients(registerNumber: string, phoneNumber: number): Observable<any> {
+  const params = new HttpParams()
+    .set('registerNumber', registerNumber || '')
+    .set('phoneNumber', phoneNumber.toString());
+
+  const options = {
+    params,
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  return this.httpClient.get<any>(`${environment.apiUrl}api/RPatient/searchPatients`, options)
+    .pipe(
+      catchError(this.handleError)
+    );
+}
+//Search Disabled Patient Record by PatientRegister Number or Phone Number
+searchDisabledPatients(registerNumber: string, phoneNumber: number): Observable<any> {
+  const params = new HttpParams()
+    .set('registerNumber', registerNumber || '')
+    .set('phoneNumber', phoneNumber.toString());
+
+  const options = {
+    params,
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  return this.httpClient.get<any>(`${environment.apiUrl}api/RPatient/DisabledsearchPatients`, options)
+    .pipe(
+      catchError(this.handleError)
+    );
+}
+
+private handleError(error: any): Observable<any> {
+  console.error('API Error:', error);
+  return throwError(error); // Use throwError instead of Observable.throw
+}
+
 }
