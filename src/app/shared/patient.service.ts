@@ -14,7 +14,7 @@ export class PatientService {
   constructor(private httpClient:HttpClient) { }
   //for retriving the patient List
 BindListPatients(){
-  this.httpClient.get(environment.apiUrl+"api/RPatient").toPromise().then(
+  this.httpClient.get(environment.apiUrl+ "api/RPatient").toPromise().then(
     response=>{
       this.patients=response as Patient[];
       console.log(this.patients);
@@ -23,7 +23,7 @@ BindListPatients(){
 }
 //for adding the patient
 insertPatient(patient:Patient):Observable<any>{
-  return this.httpClient.post(environment.apiUrl+"api/RPatient",patient);
+  return this.httpClient.post(environment.apiUrl+ "api/RPatient",patient);
 }
 
 //Populating Patient Records

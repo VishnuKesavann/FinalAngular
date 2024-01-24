@@ -76,7 +76,7 @@ export class UserloginComponent implements OnInit {
             console.log('Reception');
           }
           else if (response.rId == 303) {
-            this.router.navigateByUrl('doctor/   ');
+            this.router.navigateByUrl('doctor/list');
             console.log('Doctor');
           }
           else if (response.rId == 304) {

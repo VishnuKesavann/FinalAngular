@@ -16,6 +16,9 @@ const routes: Routes = [
   loadChildren:()=>import('./a-lab/a-lab.module').then(x=>x.ALabModule)
   },
 
+{
+  path: '', redirectTo: 'login/userlogin', pathMatch: 'full' },
+
 {path:'login',component:LoginComponent,
   loadChildren:()=>import('./a-login/a-login.module').then(x=>x.ALoginModule)
   },
@@ -29,8 +32,8 @@ const routes: Routes = [
   },
 
 
-{
-  path: '', redirectTo: 'doctor/list', pathMatch: 'full' },
+// {
+//   path: '', redirectTo: 'doctor/list', pathMatch: 'full' },
 {path:'doctor',component:DoctorComponent,
   loadChildren:()=>import('./d-doctor/d-doctor.module').then(x=>x.DDoctorModule)
   },
