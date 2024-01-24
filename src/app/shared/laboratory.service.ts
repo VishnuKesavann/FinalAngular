@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LaboratoryService {
+ 
 
   laboratory:Laboratory[];
   formData:Laboratory=new Laboratory();
