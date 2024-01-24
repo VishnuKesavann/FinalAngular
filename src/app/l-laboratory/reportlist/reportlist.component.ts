@@ -36,6 +36,9 @@ export class ReportlistComponent implements OnInit {
     this.router.navigate(['/labtech/view'])
 
   }
+  goBack() {
+    this.router.navigate(['/labtech/lablist']);
+  }
   
 
 }

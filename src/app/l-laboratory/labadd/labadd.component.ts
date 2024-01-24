@@ -43,7 +43,7 @@ export class LabaddComponent implements OnInit {
         this.resetForm(form);
         //alert
         this.toastr.success('added successFully','CMS App 2024');
-        this.router.navigate(['lablist']);
+        this.router.navigate(['labtech/report']);
       }
     )
 
@@ -64,13 +64,13 @@ export class LabaddComponent implements OnInit {
   
     }
   }
-  generateReport() {
+//   generateReport() {
     
-  // Navigate to the lab report form
-  this.router.navigate(['/labtech/report']);
-}
+//   // Navigate to the lab report form
+//   this.router.navigate(['/labtech/report']);
+// }
 goBack() {
-  this.router.navigate(['/labtech/report']);
+  this.router.navigate(['/labtech/lablist']);
 }
 
 }
