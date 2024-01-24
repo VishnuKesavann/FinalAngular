@@ -7,7 +7,7 @@ export class Patient {
     PatientAddr:string = null;
     Gender:string = null;
     BloodGroup:string = null;
-    PhoneNumber:number = 0;
+    PhoneNumber:number ;
     PatientEmail:string = null;
     PatientStatus:string = null; 
 }

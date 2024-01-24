@@ -30,13 +30,18 @@ href="#">
 
     
 <div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link"  (click)="logout()" class="btn btn-danger" >Logout</a>
+    </li>
+  </ul>
 </div>
 </div>
 </nav>
   
   <main class="main-content container mt-4">
     <router-outlet></router-outlet>
-   
+
   </main>
   
   <footer class="footer bg-light text-center text-muted py-4">

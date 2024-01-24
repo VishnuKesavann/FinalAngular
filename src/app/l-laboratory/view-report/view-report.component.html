@@ -1,0 +1,39 @@
+<div class="lab-report">
+    <h2>Lab Report</h2>
+    <div>
+      <label>Report ID:</label>
+      <span>{{ LReportVM.formData_L.ReportId }}</span>
+    </div>
+    <div>
+      <label>Report Date:</label>
+      <span>{{ LReportVM.formData_L.ReportDate | date: 'short' }}</span>
+    </div>
+    <div>
+      <label>Patient Name:</label>
+      <span>{{ LReportVM.formData_L.PatientName }}</span>
+    </div>
+    <div>
+      <label>Test Name:</label>
+      <span>{{ LReportVM.formData_L.TestName }}</span>
+    </div>
+    <div>
+      <label>Low Range:</label>
+      <span>{{ LReportVM.formData_L.LowRange }}</span>
+    </div>
+    <div>
+      <label>High Range:</label>
+      <span>{{ LReportVM.formData_L.HighRange }}</span>
+    </div>
+    <div>
+      <label>Test Result:</label>
+      <span>{{ LReportVM.formData_L.TestResult }}</span>
+    </div>
+    <div>
+      <label>Remarks:</label>
+      <span>{{ LReportVM.formData_L.Remarks }}</span>
+    </div>
+    <button (click)="printLabReport()">Print</button>
+  </div>
+  <div><button (click)="goBack()">Back</button></div>
+  
+  

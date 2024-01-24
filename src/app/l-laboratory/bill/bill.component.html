@@ -1,0 +1,29 @@
+<div class="lab-report">
+    <h2>Bill</h2>
+     <div>
+      <label>appointmentId:</label>
+      <span>{{ labtestvmService.formData_L.AppointmentId }}</span>
+    </div>
+    <div>
+      <label>Patient Name:</label>
+      <span>{{ labtestvmService.formData_L.PatientName }}</span>
+    </div>
+    
+    <div>
+      <label>Test Name:</label>
+      <span>{{ labtestvmService.formData_L.TestName }}</span>
+    </div>
+    <div>
+      <label>Amount:</label>
+      <span>Rs:100</span>
+    </div>
+    <div>
+      <label>Total Amount:</label>
+      <span>Rs:100</span>
+    </div>
+   
+   
+    <button (click)="printLabReport()">Print</button>
+  </div>
+  <div><button (click)="goBack()">Back</button></div>
+  

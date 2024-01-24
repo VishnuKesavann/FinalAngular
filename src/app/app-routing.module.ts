@@ -14,7 +14,10 @@ import { LaboratoryComponent } from './l-laboratory/laboratory/laboratory.compon
 const routes: Routes = [
   {path:'lab',component:LabComponent,
   loadChildren:()=>import('./a-lab/a-lab.module').then(x=>x.ALabModule)
-  },
+ },
+
+{
+  path: '', redirectTo: 'login/userlogin', pathMatch: 'full' },
 
 {path:'login',component:LoginComponent,
   loadChildren:()=>import('./a-login/a-login.module').then(x=>x.ALoginModule)
@@ -28,11 +31,14 @@ const routes: Routes = [
   loadChildren:()=>import('./a-staff/a-staff.module').then(x=>x.AStaffModule)
   },
 
+
+// {
+//   path: '', redirectTo: 'doctor/list', pathMatch: 'full' },
 {path:'doctor',component:DoctorComponent,
   loadChildren:()=>import('./d-doctor/d-doctor.module').then(x=>x.DDoctorModule)
   },
 
-{path:'labtech',component:LaboratoryComponent,
+{path:'labtechnician',component:LaboratoryComponent,
   loadChildren:()=>import('./l-laboratory/l-laboratory.module').then(x=>x.LLaboratoryModule)
   },
 

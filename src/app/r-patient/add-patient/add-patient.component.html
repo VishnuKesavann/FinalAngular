@@ -1,0 +1,217 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            
+            <div class="text-center mb-4">
+                <h2 class="font-weight-bold">{{ patientService.formData_P.PatientId > 0 ? 'UPDATION FORM' : 'REGISTRATION FORM' }}</h2>
+            </div>
+            <div class="mb-3">
+                <button (click)="goBackToPatientList()" class="btn btn-secondary">
+                  BACK
+                </button>
+              </div>
+            <form name="patientForm" #patientForm="ngForm" autocomplete="false" (ngSubmit)="onSubmit(patientForm)">
+                <input type="hidden" name="PatientId" [(ngModel)]="patientService.formData_P.PatientId">
+                <div *ngIf="patientService.formData_P.PatientId > 0">
+                    <div class="form-group">
+                        <label>RegisterNo:</label>
+                        <input type="text" name="RegisterNo" [(ngModel)]="patientService.formData_P.RegisterNo"
+                            class="form-control" readonly>
+                    </div>
+                </div>
+                <input type="hidden" *ngIf="patientService.formData_P.PatientId == 0" name="RegisterNo"
+                    [(ngModel)]="patientService.formData_P.RegisterNo">
+
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" name="PatientName" #PatientName="ngModel"
+                        [(ngModel)]="patientService.formData_P.PatientName" class="form-control"
+                        placeholder="Enter your Name" required
+                        [ngClass]="{'is-invalid': PatientName.touched && PatientName.invalid}"
+                        [readonly]="patientService.formData_P.PatientId > 0" (input)="validateName(patientForm)">
+                    <div class="validation-error" *ngIf="PatientName.touched && PatientName.invalid">
+                        <span class="text-danger" *ngIf="PatientName.errors?.required">
+                            Name is required
+                        </span>
+                        <span class="text-danger" *ngIf="PatientName.errors?.startsWithSpace">
+                            Name should not start with a space
+                        </span>
+                        <span class="text-danger" *ngIf="PatientName.errors?.containsOnlyWhitespace">
+                            Name should contain at least one non-whitespace character
+                        </span>
+                        <span class="text-danger" *ngIf="PatientName.errors?.containsDigit">
+                            Name should not contain any digit
+                        </span>
+                        <span class="text-danger" *ngIf="PatientName.errors?.invalidLength">
+                            Enter a Valid Name
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div *ngIf="patientService.formData_P.PatientId > 0; else showDatePicker">
+                    <div class="form-group">
+                        <label>Date Of Birth:</label>
+                        <input type="date" name="PatientDob" [(ngModel)]="patientService.formData_P.PatientDob" class="form-control" readonly>
+                    </div>
+                </div>
+
+                <ng-template #showDatePicker>
+                    <div class="form-group">
+                        <label>Date Of Birth:</label>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" name="PatientDob" #PatientDob="ngModel"
+                                [(ngModel)]="defaultDob" required
+                                [ngClass]="{'is-invalid': PatientDob.touched && PatientDob.invalid}"
+                                [matDatepickerFilter]="dateFilter">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <div class="validation-error" *ngIf="PatientDob.touched && PatientDob.invalid">
+                            <span class="text-danger">Date Of Birth Is required</span>
+                        </div>
+
+                    </div>
+                </ng-template>
+
+
+                <br>
+                <div class="form-group">
+                    <label>Address:</label>
+                    <input type="text" name="PatientAddr" #PatientAddr="ngModel"
+                        [(ngModel)]="patientService.formData_P.PatientAddr" class="form-control"
+                        placeholder="Enter your Address" required
+                        [ngClass]="{'is-invalid': PatientAddr.touched && PatientAddr.invalid}"
+                        (input)="validateAddress(patientForm)">
+                    <div class="validation-error" *ngIf="PatientAddr.touched && PatientAddr.invalid">
+                        <span class="text-danger" *ngIf="PatientAddr.errors?.required">
+                            Address is required
+                        </span>
+                        <span class="text-danger" *ngIf="PatientAddr.errors?.containsOnlyWhitespace">
+                            Address should not contain only whitespace
+                        </span>
+                        <span class="text-danger" *ngIf="PatientAddr.errors?.noNonWhitespace">
+                            Address should contain at least 3 non-whitespace character
+                        </span>
+                        <span class="text-danger" *ngIf="PatientAddr.errors?.isvalidLength">
+                            Address should contain at least 3 non-whitespace character
+                        </span>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <div *ngIf="patientService.formData_P.PatientId > 0; else showGenderDropdown">
+                        <input type="text" name="Gender" [(ngModel)]="patientService.formData_P.Gender"
+                            class="form-control" readonly>
+                    </div>
+                    <ng-template #showGenderDropdown>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Gender</mat-label>
+                            <mat-select name="Gender" #Gender="ngModel" [(ngModel)]="patientService.formData_P.Gender"
+                                required
+                                [ngClass]="{'is-invalid': Gender.touched && Gender.invalid,'selected-value':patientService.formData_P.Gender}">
+                                <mat-option disabled value="" selected>Select Gender</mat-option>
+                                <mat-option value="M">Male</mat-option>
+                                <mat-option value="F">Female</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="validation-error" *ngIf="Gender.touched && Gender.invalid">
+                            <span class="text-danger">Gender Is required</span>
+                        </div>
+
+                    </ng-template>
+                </div>
+
+                <div class="form-group">
+                    <label>BloodGroup:</label>
+                    <div *ngIf="patientService.formData_P.PatientId > 0; else showBloodGroupDropdown">
+                        <input type="text" name="BloodGroup" [(ngModel)]="patientService.formData_P.BloodGroup"
+                            class="form-control" readonly>
+                    </div>
+                    <ng-template #showBloodGroupDropdown>
+                        <mat-form-field appearance="outline">
+                            <mat-label>BloodGroup</mat-label>
+                            <mat-select name="BloodGroup" #BloodGroup="ngModel"
+                                [(ngModel)]="patientService.formData_P.BloodGroup" required
+                                [ngClass]="{'is-invalid': BloodGroup.touched && BloodGroup.invalid}">
+                                <mat-option disabled value="" selected>Select Blood Group</mat-option>
+                                <mat-option value="A+">A+</mat-option>
+                                <mat-option value="A-">A-</mat-option>
+                                <mat-option value="B+">B+</mat-option>
+                                <mat-option value="B-">B-</mat-option>
+                                <mat-option value="O+">O+</mat-option>
+                                <mat-option value="O-">O-</mat-option>
+                                <mat-option value="AB+">AB+</mat-option>
+                                <mat-option value="AB-">AB-</mat-option>
+                                <mat-option value="HH">HH</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="validation-error" *ngIf="BloodGroup.touched && BloodGroup.invalid">
+                            <span class="text-danger">BloodGroup Is required</span>
+                        </div>
+                    </ng-template>
+
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>PhoneNumber:</label>
+                    <input type="tel" name="PhoneNumber" #PhoneNumber="ngModel"
+                        [(ngModel)]="patientService.formData_P.PhoneNumber" class="form-control"
+                        placeholder="Enter your PhoneNumber" required
+                        [ngClass]="{'is-invalid': PhoneNumber.touched && PhoneNumber.invalid}"
+                        (input)="validatePhoneNumber(patientForm)">
+                    <div class="validation-error" *ngIf="PhoneNumber.touched && PhoneNumber.invalid">
+                        <span class="text-danger" *ngIf="PhoneNumber.errors?.required">
+                            PhoneNumber is required
+                        </span>
+                        <span class="text-danger" *ngIf="PhoneNumber.errors?.invalidPhoneNumber">
+                            Please enter a valid phone number (10 digits starting with 7, 8, or 9)
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" name="PatientEmail" #PatientEmail="ngModel"
+                        [(ngModel)]="patientService.formData_P.PatientEmail" class="form-control"
+                        placeholder="Enter your Email"
+                        [ngClass]="{'is-invalid': PatientEmail.touched && PatientEmail.invalid}"
+                        (input)="validatePatientEmail(patientForm)">
+                    <div class="validation-error" *ngIf="PatientEmail.touched && PatientEmail.invalid">
+                        <span class="text-danger" *ngIf="PatientEmail.errors?.required"
+                            (input)="validatePatientEmail(patientForm)">
+                            Email is required
+                        </span>
+                        <span class="text-danger" *ngIf="PatientEmail.errors?.containsOnlyWhitespace">
+                            Email should not contain only whitespace
+                        </span>
+                        <span class="text-danger" *ngIf="PatientEmail.errors?.invalidEmail">
+                            Enter a valid email address
+                        </span>
+                    </div>
+                </div>
+
+                <br>
+                <div *ngIf="patientService.formData_P.PatientId > 0">
+                    <div class="form-group">
+                        <label>PatientStatus:</label>
+                        <input type="hidden" name="PatientStatus" [(ngModel)]="patientService.formData_P.PatientStatus"
+                            class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" [disabled]="!(patientForm.valid && patientForm.dirty)"
+                        class="btn btn-lg btn-primary form-control">
+                        {{ patientService.formData_P.PatientId > 0 ? 'UPDATE' : 'ADD' }}
+                    </button>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+</div>

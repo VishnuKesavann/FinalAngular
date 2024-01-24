@@ -3,13 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { DDoctorRoutingModule } from './d-doctor-routing.module';
 import { DoctorComponent } from './doctor/doctor.component';
+import { ListTodayappComponent } from './list-todayapp/list-todayapp.component';
+import { ListPatdetailComponent } from './list-patdetail/list-patdetail.component';
+import { AddDiagnosisComponent } from './add-diagnosis/add-diagnosis.component';
+import { FormsModule } from '@angular/forms';
+import { ListPathisComponent } from './list-pathis/list-pathis.component';
 
 
 @NgModule({
-  declarations: [DoctorComponent],
+  declarations: [DoctorComponent, ListTodayappComponent, ListPatdetailComponent, AddDiagnosisComponent, ListPathisComponent],
   imports: [
     CommonModule,
-    DDoctorRoutingModule
+    DDoctorRoutingModule,
+    FormsModule
   ]
 })
 export class DDoctorModule { }
