@@ -81,7 +81,10 @@ export class AddPatientComponent implements OnInit {
       }
     )
   }
-
+  goBackToPatientList() {
+    this.router.navigate(['patient/patient-list']);
+  }
+  
   //validation
 
  // validation-phone Number

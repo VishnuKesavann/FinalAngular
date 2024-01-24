@@ -68,14 +68,14 @@ export class UserloginComponent implements OnInit {
 
           if (response == null) {
             this.error = "Invalid username and/or password";
-          } else if (response.rId == 301) {
+          } else if (response.rId == 300) {
             this.router.navigateByUrl('staff/list-staff');
             console.log('Admin');
-          } else if (response.rId == 302) {
-            this.router.navigateByUrl('patient/   ');
+          } else if (response.rId == 1302) {
+            this.router.navigateByUrl('patient/patient-list');
             console.log('Reception');
           }
-          else if (response.rId == 303) {
+          else if (response.rId == 301) {
             this.router.navigateByUrl('doctor/list');
             console.log('Doctor');
           }
@@ -83,8 +83,8 @@ export class UserloginComponent implements OnInit {
             this.router.navigateByUrl('pharmasist/   ');
             console.log('Pharmasist');
           } 
-          else if (response.rId == 305) {
-            this.router.navigateByUrl('labtech/   ');
+          else if (response.rId == 302) {
+            this.router.navigateByUrl('labtech/');
             console.log('Labtech');
           }else {
             this.error = "Sorry, you are not allowed to access the system";

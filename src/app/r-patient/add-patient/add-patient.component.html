@@ -6,9 +6,9 @@
                 <h2 class="font-weight-bold">{{ patientService.formData_P.PatientId > 0 ? 'UPDATION FORM' : 'REGISTRATION FORM' }}</h2>
             </div>
             <div class="mb-3">
-                <a [routerLink]="['../patient-list']" class="btn btn-secondary">
+                <button (click)="goBackToPatientList()" class="btn btn-secondary">
                   BACK
-                </a>
+                </button>
               </div>
             <form name="patientForm" #patientForm="ngForm" autocomplete="false" (ngSubmit)="onSubmit(patientForm)">
                 <input type="hidden" name="PatientId" [(ngModel)]="patientService.formData_P.PatientId">
