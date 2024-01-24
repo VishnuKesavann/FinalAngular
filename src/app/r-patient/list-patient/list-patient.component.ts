@@ -16,7 +16,7 @@ export class ListPatientComponent implements OnInit {
   page:number=1;
   searchForm:FormGroup;
   phoneNumber:number;
-  
+  showNameSearch: boolean = false;
   constructor(public patientservice:PatientService,private router:Router,private dialog: MatDialog,private toastr:ToastrService,private route:ActivatedRoute ,private formbuilder:FormBuilder ) { }
 
   ngOnInit(): void {
@@ -24,7 +24,8 @@ export class ListPatientComponent implements OnInit {
      this.showDisablePatient=this.route.snapshot.routeConfig.path==='disabledpatient-list'
      this.showDisablePatient ? this.patientservice.BindDisabledPatientRecords() : this.patientservice.BindListPatients();//if true show the disable-patient records else list active patient
       this.searchForm=this.formbuilder.group({
-        searchCriteria:['']
+        searchCriteria:[''],
+        searchByName: ['']
       });
     }
     //Search Patient Records
@@ -61,6 +62,10 @@ export class ListPatientComponent implements OnInit {
           this.patientservice.searchPatients(null, phoneNumber).subscribe(
             (searchResults) => {
               this.patientservice.patients = searchResults;
+              console.log(this.patientservice.patients);
+              if(this.patientservice.patients.length>1){
+                this.showNameSearch=true;
+              }
             },
             (error) => {
               console.error('Error searching patients:', error);
@@ -94,6 +99,10 @@ export class ListPatientComponent implements OnInit {
           this.patientservice.searchDisabledPatients(null, phoneNumber).subscribe(
             (searchResults) => {
               this.patientservice.patients = searchResults;
+              console.log(this.patientservice.patients);
+              if(this.patientservice.patients.length>1){
+                this.showNameSearch=true;
+              }
             },
             (error) => {
               console.error('Error searching patients:', error);
@@ -110,6 +119,19 @@ export class ListPatientComponent implements OnInit {
       }
      
     }
+    // New method for client-side search by Patient Name
+  searchPatientsByName() {
+    const nameCriteria = this.searchForm.get('searchByName').value;
+    if (nameCriteria) {
+      // Client-side filtering by Patient Name
+      this.patientservice.patients = this.patientservice.patients.filter(patient =>
+        patient.PatientName.toLowerCase().includes(nameCriteria.toLowerCase())
+      );
+      if(this.patientservice.patients.length==1){
+        this.showNameSearch=false;
+      }
+    }
+  }
   //Edit Patient Records
   updatePatient(PatientId:number){
     console.log(PatientId);
