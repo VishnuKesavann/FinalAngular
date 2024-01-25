@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LabReportVMService } from 'src/app/shared/lab-report-vm.service'
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LabtestvmService } from 'src/app/shared/labtestvm.service';
 import {GetidvmService} from 'src/app/shared/getidvm.service'
+import { Getidvm } from 'src/app/shared/getidvm';
 
 
 @Component({
@@ -13,18 +14,43 @@ import {GetidvmService} from 'src/app/shared/getidvm.service'
   styleUrls: ['./labadd.component.scss']
 })
 export class LabaddComponent implements OnInit {
-
+  idvm1:Getidvm=new Getidvm();
   constructor(public labreportService:LabReportVMService,
      public labtestvmService:LabtestvmService,
     private toastr:ToastrService, private router : Router,
-    public getidvmService:GetidvmService) { }
+    public getidvmService:GetidvmService ,public getIdVm:GetidvmService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+   // Retrieve the query parameters from the route
+   const queryParams = this.route.snapshot.queryParams;
+
+   // Now queryParams contains the values passed in the URL
+   console.log('Query Parameters:', queryParams);
+
+   // Use the values as needed
+ 
+   this.labreportService.formData_L.LabPrescId = queryParams.LabPrescId;
+
+
+    // Now 'lab' contains the object passed from the list page
+    console.log('Lab Object:',this.labtestvmService.formData_L);
+    this.getIdVm.BindListIDVM(this.labreportService.formData_L.LabPrescId).subscribe(
+      data=>
+      {
+        console.log(data);
+        this.idvm1=data;
+        this.getidvmService.getidvm1=Object.assign({},data);
+        console.log(FormData);
+      },error=>console.log(error)
+    );
+    this.labreportService.formData_L.TestId=this.getidvmService.getidvm1.TestId;
+    this.labreportService.formData_L.AppointmentId=this.getidvmService.getidvm1.AppointmentId;
+    this.labreportService.formData_L.StaffId=this.getidvmService.getidvm1.StaffId;
   }
   
 
   onSubmit(form: NgForm){  
+    console.log('Entering the On Submit')
     let addId =this.labreportService.formData_L.ReportId;
     if(addId ==0 || addId == null){
       console.log(form.value);
@@ -43,7 +69,7 @@ export class LabaddComponent implements OnInit {
         this.resetForm(form);
         //alert
         this.toastr.success('added successFully','CMS App 2024');
-        this.router.navigate(['lablist']);
+        this.router.navigate(['labtechnician/report']);
       }
     )
 

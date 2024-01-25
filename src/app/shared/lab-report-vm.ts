@@ -7,5 +7,9 @@ export class LabReportVM {
     HighRange:string=null;
     TestResult:string=null;
     Remarks:string=null;
+    LabPrescId:number=0;
+    AppointmentId:number=0;
+    TestId:number=0;
+    StaffId:number=0;
 
 }
