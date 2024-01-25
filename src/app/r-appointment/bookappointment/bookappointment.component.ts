@@ -33,6 +33,7 @@ export class BookappointmentComponent implements OnInit {
   specializations:any[]=[];
   doctors:any[]=[];
   
+  
   minDate:Date=new Date();
   maxDate:Date=new Date();
   // Use BehaviorSubject to store the doctors and initialize with an empty array
@@ -42,7 +43,8 @@ export class BookappointmentComponent implements OnInit {
   constructor(private patientService:PatientService,private route:ActivatedRoute,private router:Router,public bookingService:AppointmentViewmodelService,private dateAdapter:DateAdapter<Date>,private cdr: ChangeDetectorRef,private fb:FormBuilder,private toastr:ToastrService) {
       // Set the minimum date to today
       this.minDate = this.dateAdapter.today();
-
+      this.minDate.setHours(0, 0, 0, 0);
+      console.log(this.minDate);
       // Set the maximum date to 2 weeks from today
       this.maxDate = new Date();
       this.maxDate.setDate(this.maxDate.getDate() + 14);
@@ -161,13 +163,27 @@ export class BookappointmentComponent implements OnInit {
   
   
   onSubmit(form:FormGroup){
+    // Add one day to the selected date
+ // Ensure that form.value.AppointmentDate is a valid date string or Date object
+ const selectedDate: any = form.value.AppointmentDate;
 
+ // Create a Date object from the selectedDate
+ const currentDate = new Date(selectedDate);
+
+ // Check if currentDate is a valid Date object
+ if (!isNaN(currentDate.getTime())) {
+   // Add one day to the selected date
+   currentDate.setDate(currentDate.getDate() + 1);
     form.value.PatientId=this.patientId;
     this.appointmentViewModel.PatientId=form.value.PatientId;
     this.appointmentViewModel.DoctorId=this.selectedDoctorID;
-    this.appointmentViewModel.AppointmentDate=form.value.AppointmentDate;
+    this.appointmentViewModel.AppointmentDate= currentDate;
     this.appointmentViewModel.ConsultationFee=this.selectedDoctorConsultationFee;
-    
+  }else {
+    // Handle the case where the date is not valid
+    console.error('Invalid date:', selectedDate);
+  }
+    console.log(this.appointmentViewModel.AppointmentDate);
     console.log(this.isNewPatient);
     console.log(form.value.PatientId);
     console.log(form.value);
@@ -191,6 +207,7 @@ export class BookappointmentComponent implements OnInit {
       this.toastr.error(error.error,'Medanta Clinic');
       this.bookingService.departments=null;
     }
+
       }
     );
   }
