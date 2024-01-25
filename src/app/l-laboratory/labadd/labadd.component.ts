@@ -64,13 +64,14 @@ export class LabaddComponent implements OnInit {
   
     }
   }
-  generateReport() {
+  generateReport(AppointmentId : number) {
     
   // Navigate to the lab report form
-  this.router.navigate(['/labtechnician/report']);
+  this.router.navigate(['/labtechnician/report', AppointmentId]);
 }
 goBack() {
   this.router.navigate(['/labtechnician/list-lab']);
 }
+
 
 }
