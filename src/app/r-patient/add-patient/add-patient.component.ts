@@ -43,6 +43,21 @@ export class AddPatientComponent implements OnInit {
   //Inserting Patient Records
   InsertPatientRecord(form:NgForm){
     console.log("Inserting Patient");
+    const selectedDate: any = form.value.PatientDob;
+
+ // Create a Date object from the selectedDate
+ const currentDate = new Date(selectedDate);
+
+ // Check if currentDate is a valid Date object
+ if (!isNaN(currentDate.getTime())) {
+   // Add one day to the selected date
+   currentDate.setDate(currentDate.getDate() + 1);
+   form.value.PatientDob=currentDate;
+ }
+ else {
+  // Handle the case where the date is not valid
+  console.error('Invalid date:', selectedDate);
+}
     this.patientService.insertPatient(form.value).subscribe(
       (result)=>{
         // Capture the generated PatientId
