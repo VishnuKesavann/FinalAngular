@@ -21,13 +21,23 @@ export class LablistComponent implements OnInit {
 
   generateReport(lab:any) {
       // Assuming you want to pre-fill some fields in labreportService.formData_L
+      this.labtestvmService.formData_L.LabPrescId=lab.LabPrescId;
       this.labtestvmService.formData_L.AppointmentId = lab.AppointmentId;
       this.labtestvmService.formData_L.PatientName = lab.PatientName;
       this.labtestvmService.formData_L.DoctorName = lab.DoctorName;
       this.labtestvmService.formData_L.TestName = lab.TestName;
-
+    console.log(this.labtestvmService.formData_L);
     // Navigate to the lab report form
-    this.router.navigate(['/labtechnician/add',lab]);
+    this.router.navigate(['/labtechnician/add'], {
+      queryParams: {
+          AppointmentId: lab.AppointmentId,
+          PatientName: lab.PatientName,
+          DoctorName: lab.DoctorName,
+          TestName: lab.TestName,
+          LabPrescId: lab.LabPrescId,
+          LabTestStatus: lab.LabTestStatus
+      }
+  });
   }
   goBack() {
     this.router.navigate(['/labtechnician/']);
