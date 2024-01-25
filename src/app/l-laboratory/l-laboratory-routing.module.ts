@@ -7,8 +7,8 @@ import { BillComponent } from './bill/bill.component';
 import { ViewReportComponent } from './view-report/view-report.component';
 
 const routes: Routes = [
-{path: 'lablist',component:LablistComponent},
-{path:'report',component:ReportlistComponent},
+{path:'list-lab',component:LablistComponent},
+{path:'report/:AppointmentId',component:ReportlistComponent},
 {path:'add', component:LabaddComponent},
 {path:'bill',component:BillComponent},
 {path:'view',component:ViewReportComponent}
