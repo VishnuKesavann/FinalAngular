@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let lab of filteredLaboratory">
+        <tr *ngFor="let lab of this.laboratoryService.laboratory">
           <td>{{lab.TestId}}</td>
           <td>{{lab.TestName}}</td>
           <td>{{lab.LowRange}}</td>
