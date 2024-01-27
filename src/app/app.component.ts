@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
 
 export class AppComponent {
   title = 'FinalCMSProject';
+  showlogout:boolean=true;
   constructor(private router: Router) { }
 
   logout() {
+    this.showlogout=false;
     this.router.navigate(["login/userlogin"]);
 
   }

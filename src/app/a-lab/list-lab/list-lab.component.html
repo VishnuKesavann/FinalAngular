@@ -19,6 +19,7 @@
           <th>LowRange</th>
           <th>HighRange</th>
           <th>TestPrice</th>
+<<<<<<< HEAD
          
           
       </tr>
@@ -30,6 +31,17 @@
           <td>{{ lab.LowRange }}</td>
           <td>{{ lab.HighRange }}</td>
           <td>{{ lab.TestPrice }}</td>
+=======
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lab of this.laboratoryService.laboratory">
+          <td>{{lab.TestId}}</td>
+          <td>{{lab.TestName}}</td>
+          <td>{{lab.LowRange}}</td>
+          <td>{{lab.HighRange}}</td>
+          <td>{{lab.TestPrice}}</td>
+>>>>>>> 6a84d984e40e2f4ac19343f616019e5e4f70083f
           <td>
               <button class="btn btn-sm btn-info" (click)="UpdateLab(lab.TestId)">Edit</button>&nbsp;
               <button class="btn btn-sm btn-danger"  (click)="Deletelab(lab.TestId)">Delete</button>
