@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Staff } from './staff';
 import { Staffviewmodel } from './staffviewmodel';
 import { Department } from './department';
 import { Qualification } from './qualification';
@@ -14,36 +15,44 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StaffviewmodelService {
-
-  staffviewmodel: Staffviewmodel[];
-  department: Department[];
-  qualification: Qualification[];
-  userlogin: Userlogin[];
-  specialization: Specialization[];
-  role: Role[];
-  doctor: Doctor[];
-
   formData: Staffviewmodel = new Staffviewmodel();
-  constructor(private httpClient: HttpClient) { }
+    staffviewmodel:Staffviewmodel[];
+    staff:Staff[];
+    departments:Department[];
+    doctor:Doctor[];
+    userlogin:Userlogin[];
+    qualification:Qualification[];
+    role:Role[];
+    specialization:Specialization[];
 
-  BindListMedicine() {
-    this.httpClient.get(environment.apiUrl + "api/AStaff")
+static formData: Staffviewmodel;
+
+
+  constructor(private httpClient:HttpClient) { }
+
+  BindListStaffs() {
+    this.httpClient.get(environment.apiUrl + "/api/AStaff")
       .toPromise().then(response => {
         this.staffviewmodel = response as Staffviewmodel[];
         console.log(this.staffviewmodel);
-      }).catch(error => { console.error('Error: ', error) });
+  
+      });
   }
 
   insertstaff(staffVm: Staffviewmodel): Observable<any> {
-    return this.httpClient.post(environment.apiUrl + "api/AStaff", staffVm);
+    return this.httpClient.post(environment.apiUrl + "/api/AStaff",staffVm);
+  
   }
 
-  // Get staff
-  getstaff(StaffId: number): Observable<any> {
-    return this.httpClient.get(environment.apiUrl + "api/AStaff/" + StaffId);
-  }
+ //Get Lab
+getstaff(StaffId:number):Observable<any>
+{
+  return this.httpClient.get(environment.apiUrl+"/api/AStaff/"+StaffId)
+}
+
 
   deletestaff(id: number): Observable<any> {
     return this.httpClient.delete(environment.apiUrl + "api/AStaff/" + id);
   }
+ 
 }

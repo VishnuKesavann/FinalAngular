@@ -31,11 +31,11 @@ export class AddMedicineComponent implements OnInit {
     
  
    }
-  //  else {
-  //    //alert("EmpId is greater")
-  //    console.log(form.value);
-  //    this.UpdateRecord(form);
-  //  }
+   else {
+     //alert("EmpId is greater")
+     console.log(form.value);
+     this.UpdateRecord(form);
+   }
    }
 
    InsertRecord(form: NgForm){
@@ -46,28 +46,28 @@ export class AddMedicineComponent implements OnInit {
         
         this.resetForm(form);
         this.toastr.success('Added succesfully', 'EMS APP 2024');
-        this.router.navigate(['a-medicine/list-medicine']);
+        this.router.navigate(['medicine/list-medicine']);
       }
     )
   }
 
-
-  // UpdateRecord(form: NgForm){
-  //   console.log("Updating");
-  //   this.medicineservice.updateMedicine(form.value).subscribe(
-  //     (result) => {
-  //       console.log(result);
-  //       this.resetForm(form);
-  //       this.toastr.success('Updated succesfullu', 'EMP APP 2024');
-  //       this.router.navigate(['a-medicine/list-medicine']);
-  //     }
-  //   )
-  // }
-
+  UpdateRecord(form: NgForm){
+    console.log("Updating");
+    this.medicineservice.updateMedicine(form.value).subscribe(
+      (result) => {
+        console.log(result);
+        this.resetForm(form);
+        this.toastr.success('Updated succesfullu', 'EMP APP 2024');
+        this.router.navigate(['medicine/list-medicine']);
+      }
+    )
+  }
   resetForm(form: NgForm) {
     if (form != null) {
       form.resetForm();
     }
   }
-
+  back(){
+    this.router.navigateByUrl("medicine/list-medicine");
+      }
 }

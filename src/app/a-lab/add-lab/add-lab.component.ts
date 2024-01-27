@@ -67,4 +67,7 @@ export class AddLabComponent implements OnInit {
        form.resetForm();
      }
    }
+   back(){
+    this.router.navigateByUrl("lab/list-lab");
+      }
 }

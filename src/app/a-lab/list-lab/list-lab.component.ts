@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {LaboratoryService} from 'src/app/shared/laboratory.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-lab',
@@ -8,34 +9,37 @@ import {LaboratoryService} from 'src/app/shared/laboratory.service';
   styleUrls: ['./list-lab.component.scss']
 })
 export class ListLabComponent implements OnInit {
-  [x: string]: any;
+  page: number = 1;
+  filter: string;
 
-  constructor(public laboratoryService: LaboratoryService,
-    private router:Router) { }
+  constructor(public labService: LaboratoryService,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    console.log("welcome to life cycle hook")
-    this.laboratoryService.BindListMedicine();
+    console.log("Welcome to LifeCycle Hook");
+    this.labService.BindListLab();
   }
-  updateLab(testId: number) {
-    console.log("hello");
-    console.log(testId);
-    this.router.navigate(['/lab/update-lab', testId]);
+  UpdateLab(labId: number) {
+    console.log("Hello");
+    console.log(labId);
+    this.router.navigate(['lab/update-lab', labId]);
   }
-  
- deleteLab(id: number) {
-  if (confirm('Are you sure to delete this record?')) {
-    this.laboratoryService.deleteLab(id)
-      .subscribe(
-        response => {
-          this.laboratoryService.BindListMedicine();
-          this.toastr.success('Deleted successfully', 'CMSApp 2023');
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
-}
 
+  
+  Deletelab(id:number){
+    if(confirm('Are you sure to delete this Record?'))
+    this.labService.deleteLab(id)
+    .subscribe(response=>{
+    this.labService.BindListLab();
+    
+  },
+  err=>{
+  console.log(err)
+  });
+  }
+
+  back(){
+    this.router.navigateByUrl("a-home/adminhome");
+      }
 }

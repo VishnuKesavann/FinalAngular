@@ -29,11 +29,11 @@ export class UpdateLabComponent implements OnInit {
           (data: any) => {
             console.log(data);
             this.lab = data;
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+            this.labservice.formData=Object.assign({},data);
+            console.log(this.labservice.formData.TestId);
+            console.log(FormData)
+          },error=>console.log(error));
+        
     }
     
   }
