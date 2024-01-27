@@ -50,10 +50,7 @@
         <textarea id="remarks" name="remarks" [(ngModel)]="labreportService.formData_L.Remarks" class="form-control"></textarea>
       </div>
     </div>
-  
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-    
+  <button type="submit" class="btn btn-primary"(click)="generateReport(labreportService.formData_L.ReportId)">Submit</button>
   </form>
   <div><button (click)="goBack()">Back</button></div>
   
