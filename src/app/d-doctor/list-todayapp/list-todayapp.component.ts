@@ -8,6 +8,7 @@ import { TodayappService } from 'src/app/shared/todayapp.service';
   styleUrls: ['./list-todayapp.component.scss']
 })
 export class ListTodayappComponent implements OnInit {
+  filter:any;
 
   constructor(public todayapp:TodayappService, private router: Router) { }
 
