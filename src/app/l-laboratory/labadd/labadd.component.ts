@@ -19,6 +19,13 @@ export class LabaddComponent implements OnInit {
      public labtestvmService:LabtestvmService,
     private toastr:ToastrService, private router : Router,
     public getidvmService:GetidvmService ,public getIdVm:GetidvmService,private route:ActivatedRoute) { }
+    getCurrentDate(): string {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth() + 1).toString().padStart(2, '0');
+      const day = today.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
 
   ngOnInit(): void {
    // Retrieve the query parameters from the route
@@ -48,6 +55,7 @@ export class LabaddComponent implements OnInit {
     this.labreportService.formData_L.StaffId=this.getidvmService.getidvm1.StaffId;
   }
   
+  
 
   onSubmit(form: NgForm){  
     console.log('Entering the On Submit')
@@ -63,13 +71,15 @@ export class LabaddComponent implements OnInit {
 
   InsertRecord(form: NgForm){
     console.log("inserting");
+    console.log(this.labtestvmService.formData_L.AppointmentId)
     this.labreportService.insertLabReport(form.value).subscribe(
       (result)=>{
         console.log(result);
+        this.router.navigate(['labtechnician/report',result]);
         this.resetForm(form);
         //alert
         this.toastr.success('added successFully','CMS App 2024');
-        this.router.navigate(['labtechnician/report']);
+        
       }
     )
 
