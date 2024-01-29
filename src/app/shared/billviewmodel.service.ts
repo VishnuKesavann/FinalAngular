@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -29,5 +29,19 @@ BindAppointments(){
 //Canceling the Appointments
 CancelAppointments(AppointmentId:number){
   return this.httpClient.patch(environment.apiUrl+'api/RAppoinment/cancelAppointment/'+AppointmentId,{});
+}
+
+//Search by appoinment Date
+searchAppointmentByAppointmentDate(date:Date):Observable<Billviewmodel[]>{
+  return this.httpClient.get<Billviewmodel[]>(environment.apiUrl+'api/RAppoinment/SearchByAppointmentDate/'+date.toDateString())
+}
+//search by appointment Date and Register Number
+searchAppointmentByDateAndRegisterNumber(date: Date, registerNumber: string): Observable<any> {
+  const params = new HttpParams()
+    .set('date', date.toISOString())
+    .set('RegisterNumber', registerNumber);
+
+  
+  return this.httpClient.get<any>(  environment.apiUrl+'api/RAppoinment/SearchByAppointmentDateAndRegisterNumber',{ params });
 }
 }

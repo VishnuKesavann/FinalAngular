@@ -72,7 +72,7 @@ export class ListPatientComponent implements OnInit {
               this.toastr.error(error.error,'Medanta Clinic');
             }
           );
-        } else {
+        } else if(this.patientservice.patients.length<1){
           // Handle invalid input or provide appropriate feedback to the user
           console.log(
             'Invalid input. Please enter a valid register number or phone number.'
@@ -109,7 +109,7 @@ export class ListPatientComponent implements OnInit {
               this.toastr.error(error.error,'Medanta Clinic');
             }
           );
-        } else {
+        } else if(this.patientservice.patients.length<1) {
           // Handle invalid input or provide appropriate feedback to the user
           console.log(
             'Invalid input. Please enter a valid register number or phone number.'
