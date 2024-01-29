@@ -36,8 +36,8 @@ getMedicine(medicineId:number):Observable<any>
   return this.httpClient.get(environment.apiUrl+"/api/AMedicine/"+medicineId)
 }
 
-updateMedicine(updatedMedicine: Medicine): Observable<any> {
-  return this.httpClient.put(environment.apiUrl + "/api/AMedicine/" + updatedMedicine.MedicineId, updatedMedicine);
+updateMedicine(medId:Medicine):Observable<any>{
+  return this.httpClient.put(environment.apiUrl + "/api/amedicine/",medId);
 }
 
 

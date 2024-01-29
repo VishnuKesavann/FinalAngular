@@ -25,7 +25,7 @@ export class ListStaffComponent implements OnInit {
   UpdateStaff(staffId: number) {
     
     console.log(staffId);
-    this.router.navigate(['a-staff/edit-staff', staffId]);
+    this.router.navigate(['staff/update-staff', staffId]);
   }
   back(){
     this.router.navigateByUrl("a-home/adminhome");

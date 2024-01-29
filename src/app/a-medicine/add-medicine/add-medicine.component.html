@@ -65,28 +65,28 @@
 
 
     <div class="form-group">
-        <label>Stock Quantity&nbsp;</label>
-        <input name="StockQuantity" #StockQuantity="ngModel" [(ngModel)]="medicineservice.formData.MedicineStock"
+        <label>MedicineStock&nbsp;</label>
+        <input name="MedicineStock" #MedicineStock="ngModel" [(ngModel)]="medicineservice.formData.MedicineStock"
             class="form-control" placeholder="Enter Stock Quantity"  required
-            pattern="^\d+$" [ngClass]="{'is-invalid': StockQuantity.touched && StockQuantity.invalid}">
+            pattern="^\d+$" [ngClass]="{'is-invalid': MedicineStock.touched && MedicineStock.invalid}">
 
-        <div class="Validation-error" *ngIf="StockQuantity.touched && StockQuantity.invalid">
-            <div *ngIf="StockQuantity.errors.required">Stock Quantity is required</div>
-            <div *ngIf="StockQuantity.errors.pattern">Please enter a valid numeric value</div>
+        <div class="Validation-error" *ngIf="MedicineStock.touched && MedicineStock.invalid">
+            <div *ngIf="MedicineStock.errors.required">Stock Quantity is required</div>
+            <div *ngIf="MedicineStock.errors.pattern">Please enter a valid numeric value</div>
         </div>
     </div>
     <br>
 
 
     <div class="form-group">
-        <label>Unit Price&nbsp;</label>
-        <input name="UnitPrice" #UnitPrice="ngModel" [(ngModel)]="medicineservice.formData.MedicineUnitPrice"
+        <label>MedicineMedicineUnitPrice&nbsp;</label>
+        <input name="MedicineUnitPrice" #MedicineUnitPrice="ngModel" [(ngModel)]="medicineservice.formData.MedicineUnitPrice"
             class="form-control" placeholder="Enter Unit Price"  required
-            pattern="^\d+(\.\d{1,2})?$" [ngClass]="{'is-invalid': UnitPrice.touched && UnitPrice.invalid}">
+            pattern="^\d+(\.\d{1,2})?$" [ngClass]="{'is-invalid': MedicineUnitPrice.touched && MedicineUnitPrice.invalid}">
 
-        <div class="Validation-error" *ngIf="UnitPrice.touched && UnitPrice.invalid">
-            <div *ngIf="UnitPrice.errors.required">Unit Price is required</div>
-            <div *ngIf="UnitPrice.errors.pattern">Please enter a valid numeric value</div>
+        <div class="Validation-error" *ngIf="MedicineUnitPrice.touched && MedicineUnitPrice.invalid">
+            <div *ngIf="MedicineUnitPrice.errors.required">Unit Price is required</div>
+            <div *ngIf="MedicineUnitPrice.errors.pattern">Please enter a valid numeric value</div>
         </div>
     </div>
     <br>

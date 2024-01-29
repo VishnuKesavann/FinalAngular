@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Staffviewmodel } from './staffviewmodel';
+import { Staffviewmodel } from 'src/app/shared/staffviewmodel';
 import{ HttpClient } from '@angular/common/http'
 import{environment} from'src/environments/environment'
 import{Observable} from 'rxjs';
-import { Staff } from './staff';
+import { Staff } from 'src/app/shared/staff';
 
 @Injectable({
   providedIn: 'root'

@@ -9,56 +9,67 @@
     <!-- type="hidden" -->
 
     <div class="form-group">
-        <label>Full Name&nbsp;</label>
-        <input name="FullName" #FullName="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffName" class="form-control"
+        <label>StaffName&nbsp;</label>
+        <input name="StaffName" #StaffName="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffName" class="form-control"
             placeholder="Enter Full Name" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':FullName.touched && FullName.invalid}">
-
-        <div class="Validation-error" *ngIf="FullName.touched && FullName.invalid">
-            <div>Full Name is required</div>
+            pattern="^[a-zA-Z]+$" 
+            [ngClass]="{'is-invalid': StaffName.touched && StaffName.invalid}">
+    
+        <div class="Validation-error" *ngIf="StaffName.touched && StaffName.invalid">
+            <div *ngIf="StaffName.errors?.required">Full Name is required</div>
+            <div *ngIf="StaffName.errors?.pattern">Only alphabets are allowed</div>
         </div>
     </div>
     <br>
-
-
+    
     <div class="form-group">
-        <label>Dob&nbsp;</label>
-        <input type="date" name="Dob" #Dob="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffDob" class="form-control"
-            placeholder="Enter Dob" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':Dob.touched && Dob.invalid}">
-
-        <div class="Validation-error" *ngIf="Dob.touched && Dob.invalid">
-            <div>Dob is required</div>
+        <label>Date of Birth&nbsp;</label>
+        <input type="date"
+               name="StaffDob"
+               #StaffDob="ngModel"
+               [(ngModel)]="staffdetailsVMservice.formData.StaffDob"
+               class="form-control"
+               placeholder="Enter StaffDob"
+               required
+               [ngClass]="{'is-invalid': StaffDob.touched && StaffDob.invalid}"
+               [min]="getMinDOBDate()"
+               [max]="getMaxDOBDate()">
+        
+        <div class="Validation-error" *ngIf="StaffDob.touched && StaffDob.invalid">
+            <div *ngIf="StaffDob.errors?.required">StaffDob is required</div>
+            <div *ngIf="StaffDob.errors?.max">StaffDob cannot be after 18 years from the current date</div>
         </div>
     </div>
     <br>
+    
+    
 
 
     <div class="form-group">
-        <label>Gender&nbsp;</label>
-        <select name="Gender" #Gender="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffGender" class="form-control" required
-            [ngClass]="{'is-invalid': Gender.touched && Gender.invalid}">
-            <option value="" disabled selected>Select Gender</option>
+        <label>StaffGender&nbsp;</label>
+        <select name="StaffGender" #StaffGender="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffGender" class="form-control" required
+            [ngClass]="{'is-invalid': StaffGender.touched && StaffGender.invalid}">
+            <option value="" disabled selected>Select StaffGender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="others">Others</option>
         </select>
 
-        <div class="Validation-error" *ngIf="Gender.touched && Gender.invalid">
-            <div>Gender is required</div>
+        <div class="Validation-error" *ngIf="StaffGender.touched && StaffGender.invalid">
+            <div>StaffGender is required</div>
         </div>
     </div>
     <br>
 
 
     <div class="form-group">
-        <label>Address&nbsp;</label>
-        <input name="Address" #Address="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffAddress" class="form-control"
-            placeholder="Enter Address" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':Address.touched && Address.invalid}">
+        <label>StaffAddress&nbsp;</label>
+        <input name="StaffAddress" #StaffAddress="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffAddress" class="form-control"
+            placeholder="Enter StaffAddress" minlength="3" maxlength="25" required
+            [ngClass]="{'is-invalid':StaffAddress.touched && StaffAddress.invalid}">
 
-        <div class="Validation-error" *ngIf="Address.touched && Address.invalid">
-            <div>Address is required</div>
+        <div class="Validation-error" *ngIf="StaffAddress.touched && StaffAddress.invalid">
+            <div>StaffAddress is required</div>
         </div>
     </div>
     <br>
@@ -66,9 +77,9 @@
 
 
     <div class="form-group">
-        <label>BloodGroup&nbsp;</label>
-        <select name="BloodGroup" #BloodGroup="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffBloodgroup"
-            class="form-control" required [ngClass]="{'is-invalid': BloodGroup.touched && BloodGroup.invalid}">
+        <label>StaffBloodgroup&nbsp;</label>
+        <select name="StaffBloodgroup" #StaffBloodgroup="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffBloodgroup"
+            class="form-control" required [ngClass]="{'is-invalid': StaffBloodgroup.touched && StaffBloodgroup.invalid}">
             <option value="" disabled selected>Select Blood Group</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -80,82 +91,74 @@
             <option value="O-">O-</option>
         </select>
 
-        <div class="Validation-error" *ngIf="BloodGroup.touched && BloodGroup.invalid">
-            <div>BloodGroup is required</div>
+        <div class="Validation-error" *ngIf="StaffBloodgroup.touched && StaffBloodgroup.invalid">
+            <div>StaffBloodgroup is required</div>
         </div>
     </div>
     <br>
 
     <div class="form-group">
-        <label>JoiningDate&nbsp;</label>
-        <input type="date" name="JoiningDate" #JoiningDate="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffJoindate"
-            class="form-control" placeholder="Enter JoiningDate" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':JoiningDate.touched && JoiningDate.invalid}">
-
-        <div class="Validation-error" *ngIf="JoiningDate.touched && JoiningDate.invalid">
-            <div>JoiningDate is required</div>
-        </div>
-    </div>
-    <br>
-
-    <div class="form-group">
-        <label>Salary&nbsp;</label>
-        <input name="Salary" #Salary="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffSalary" class="form-control"
-            placeholder="Enter Salary" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':Salary.touched && Salary.invalid}">
-
-        <div class="Validation-error" *ngIf="Salary.touched && Salary.invalid">
-            <div>Salary is required</div>
-        </div>
-    </div>
-    <br>
-
-    <div class="form-group">
-        <label>MobileNo&nbsp;</label>
-        <input name="MobileNo" #MobileNo="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffMobieno" class="form-control"
-            placeholder="Enter MobileNo" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':MobileNo.touched && MobileNo.invalid}">
-
-        <div class="Validation-error" *ngIf="MobileNo.touched && MobileNo.invalid">
-            <div>MobileNo is required</div>
-        </div>
-    </div>
-    <br>
-
-
-    <div class="form-group">
-        <label>Email&nbsp;</label>
-        <input name="Email" #Email="ngModel" [(ngModel)]="staffdetailsVMservice.formData.EMail" class="form-control"
-            placeholder="Enter Email" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':Email.touched && Email.invalid}">
-
-        <div class="Validation-error" *ngIf="Email.touched && Email.invalid">
-            <div>Email is required</div>
-        </div>
-    </div>
-    <br>
-
-
-    <div class="form-group">
-        <label>Department&nbsp;</label>
-        <select name="DepartmentId" #DepartmentId="ngModel" [(ngModel)]="staffdetailsVMservice.formData.DepartmentId"
-                class="form-control" required
-                [ngClass]="{'is-invalid': DepartmentId.touched && DepartmentId.invalid}">
-            <option value="0" disabled selected>Select Department</option>
-            <option value="301">Cardiology</option>
-            <option value="302">Pediatrician</option>
-            <option value="303">Neurology</option>
-            <option value="304">Dermatology</option>
-            <option value="305">General Medicine</option>
-            
-        </select>
-    
-        <div class="Validation-error" *ngIf="DepartmentId.touched && DepartmentId.invalid">
-            <div>Department is required</div>
+        <label>StaffJoindate&nbsp;</label>
+        <input type="date"
+               name="StaffJoindate"
+               #StaffJoindate="ngModel"
+               [(ngModel)]="staffdetailsVMservice.formData.StaffJoindate"
+               class="form-control"
+               placeholder="Enter StaffJoindate"
+               minlength="3"
+               maxlength="25"
+               required
+               [ngClass]="{'is-invalid': StaffJoindate.touched && StaffJoindate.invalid}"
+               [min]="getMinJoinDate()"  [max]="getMaxJoinDate()">
+        
+        <div class="Validation-error" *ngIf="StaffJoindate.touched && StaffJoindate.invalid">
+            <div *ngIf="StaffJoindate.errors?.required">StaffJoindate is required</div>
         </div>
     </div>
     <br>
     
+
+    <div class="form-group">
+        <label>StaffSalary&nbsp;</label>
+        <input name="StaffSalary" #StaffSalary="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffSalary" class="form-control"
+            placeholder="Enter StaffSalary" required pattern="^\d+$"
+            [ngClass]="{'is-invalid': StaffSalary.touched && StaffSalary.invalid}">
+    
+        <div class="Validation-error" *ngIf="StaffSalary.touched && StaffSalary.invalid">
+            <div *ngIf="StaffSalary.errors?.required">StaffSalary is required</div>
+            <div *ngIf="StaffSalary.errors?.pattern">StaffSalary must be numeric</div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label>StaffMobieno&nbsp;</label>
+        <input name="StaffMobieno" #StaffMobieno="ngModel" [(ngModel)]="staffdetailsVMservice.formData.StaffMobieno" class="form-control"
+            placeholder="Enter StaffMobieno" required pattern="^[6-9]\d{9}"
+            [ngClass]="{'is-invalid': StaffMobieno.touched && StaffMobieno.invalid}">
+    
+        <div class="Validation-error" *ngIf="StaffMobieno.touched && StaffMobieno.invalid">
+            <div *ngIf="StaffMobieno.errors?.required">StaffMobieno is required</div>
+            <div *ngIf="StaffMobieno.errors?.pattern">Enter a valid mobile number</div>
+        </div>
+    </div>
+    <br>
+
+
+    <div class="form-group">
+        <label>EMail&nbsp;</label>
+        <input name="EMail" #EMail="ngModel" [(ngModel)]="staffdetailsVMservice.formData.EMail" class="form-control"
+            placeholder="Enter EMail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+            [ngClass]="{'is-invalid': EMail.touched && EMail.invalid}">
+    
+        <div class="Validation-error" *ngIf="EMail.touched && EMail.invalid">
+            <div *ngIf="EMail.errors?.required">EMail is required</div>
+            <div *ngIf="EMail.errors?.pattern">Enter a valid EMail StaffAddress</div>
+        </div>
+    </div>
+    <br>
+
+
+   
 
 
     <div class="form-group">
@@ -164,13 +167,9 @@
                 class="form-control" required
                 [ngClass]="{'is-invalid': QualificationId.touched && QualificationId.invalid}">
             <option value="0" disabled selected>Select Qualification</option>
-            <option value="601">MBBS</option>
-            <option value="602"> MBBS MD</option>
-            <option value="603">BSC Nursing</option>
-            <option value="604">Medical Laboratory</option>
-            <option value="605">B Pharm</option>
-            <option value="606">CCMA</option>
-            <option value="606">BBA Hospital Management</option>
+            <option value="501">MBBS</option>
+            <option value="502"> MBBS MD</option>
+            
         </select>
     
         <div class="Validation-error" *ngIf="QualificationId.touched && QualificationId.invalid">
@@ -185,11 +184,11 @@
                 class="form-control" required
                 [ngClass]="{'is-invalid': RoleId.touched && RoleId.invalid}">
             <option value="0" disabled selected>Select Role</option>
-            <option value="1">Admin</option>
-            <option value="2">Receptionist</option>
-            <option value="3">Doctor</option>
-            <option value="4">Lab Technician</option>
-            <option value="5">Pharmacist</option>
+            <option value="301">Admin</option>
+           
+            <option value="302">Doctor</option>
+            <option value="305">Lab Technician</option>
+            <option value="304">Pharmacist</option>
         </select>
     
         <div class="Validation-error" *ngIf="RoleId.touched && RoleId.invalid">
@@ -200,18 +199,16 @@
 
 
 
-    
+    <div *ngIf="'' + staffdetailsVMservice.formData?.RoleId === '302'">
     <div class="form-group">
         <label>Specialization&nbsp;</label>
         <select name="SpecializationId" #SpecializationId="ngModel" [(ngModel)]="staffdetailsVMservice.formData.SpecializationId"
                 class="form-control" required
                 [ngClass]="{'is-invalid': SpecializationId.touched && SpecializationId.invalid}">
             <option value="0" disabled selected>Select Specialization</option>
-            <option value="401">Cardiologist</option>
-            <option value="402">Pediatric</option>
-            <option value="403">Neurologist</option>
-            <option value="404">Dermatologist</option>  
-            <option value="405">Physician</option>  
+            <option value="701">Cardiologist</option>
+            <option value="702">Pediatric</option>
+            
                        
         </select>
     
@@ -222,53 +219,82 @@
     <br>
     
 
+    <div class="form-group">
+        <label>Department&nbsp;</label>
+        <select name="DepartmentId" #DepartmentId="ngModel" [(ngModel)]="staffdetailsVMservice.formData.DepartmentId"
+                class="form-control" required
+                [ngClass]="{'is-invalid': DepartmentId.touched && DepartmentId.invalid}">
+            <option value="0" disabled selected>Select Department</option>
+            <option value="601">Cardiology</option>
+            <option value="602">Pediatrician</option>
+            
+            
+        </select>
+    
+        <div class="Validation-error" *ngIf="DepartmentId.touched && DepartmentId.invalid">
+            <div>Department is required</div>
+        </div>
+    </div>
+    <br>
     
 
     <div class="form-group">
         <label>ConsultationFee&nbsp;</label>
         <input name="ConsultationFee" #ConsultationFee="ngModel" [(ngModel)]="staffdetailsVMservice.formData.ConsultationFee"
-            class="form-control" placeholder="Enter ConsultationFee" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':ConsultationFee.touched && ConsultationFee.invalid}">
-
-        <div class="Validation-error" *ngIf="ConsultationFee.touched && ConsultationFee.invalid">
-            <div>ConsultationFee is required</div>
-        </div>
-    </div>
-    <br>
-    <div class="form-group">
-        <label>UserName&nbsp;</label>
-        <input name="UserName" #UserName="ngModel" [(ngModel)]="staffdetailsVMservice.formData.UserName" class="form-control"
-            placeholder="Enter UserName" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':UserName.touched && UserName.invalid}">
-
-        <div class="Validation-error" *ngIf="UserName.touched && UserName.invalid">
-            <div>UserName is required</div>
-        </div>
-    </div>
-    <br>
-
-     <div class="form-group">
-        <label>Password&nbsp;</label>
-        <input name="Password" #Password="ngModel" [(ngModel)]="staffdetailsVMservice.formData.Password" class="form-control"
-            placeholder="Enter Password" minlength="3" maxlength="25" required
-            [ngClass]="{'is-invalid':Password.touched && Password.invalid}">
-
-        <div class="Validation-error" *ngIf="Password.touched && Password.invalid">
-            <div>Password is required</div>
-        </div>
-    </div>
-    <br> 
-
+            class="form-control" placeholder="Enter ConsultationFee" required pattern="^[0-9]+$"
+            [ngClass]="{'is-invalid': ConsultationFee.touched && ConsultationFee.invalid}">
     
+        <div class="Validation-error" *ngIf="ConsultationFee.touched && ConsultationFee.invalid">
+            <div *ngIf="ConsultationFee.errors?.required">ConsultationFee is required</div>
+            <div *ngIf="ConsultationFee.errors?.pattern">Enter a valid numeric value</div>
+        </div>
+    </div>
+    <br>
+    
+</div>
+<div class="form-group">
+    <label>UserName&nbsp;</label>
+    <input name="UserName" #UserName="ngModel" [(ngModel)]="staffdetailsVMservice.formData.UserName" class="form-control"
+        placeholder="Enter UserName" minlength="3" maxlength="25" required
+        [ngClass]="{'is-invalid':UserName.touched && UserName.invalid}">
 
+    <div class="Validation-error" *ngIf="UserName.touched && UserName.invalid">
+        <div>UserName is required</div>
+    </div>
+</div>
+<br>
 
+<div class="form-group">
+    <label>Password&nbsp;</label>
+    <input
+        name="Password"
+        #Password="ngModel"
+        [(ngModel)]="staffdetailsVMservice.formData.Password"
+        class="form-control"
+        placeholder="Enter Password"
+        minlength="3"
+        maxlength="25"
+        required
+        [ngClass]="{'is-invalid': Password.touched && (Password.invalid || passwordInvalid)}">
+    <div class="Validation-error" *ngIf="Password.touched && Password.invalid && !passwordInvalid">
+        <div>Password is required</div>
+    </div>
+    <div class="Validation-error" *ngIf="passwordInvalid">
+        <div>Password must contain at least one uppercase letter</div>
+    </div>
+</div>
+<br>
 
 
     <div class="form-group">
 
         <!-- Dirty is the tearm used to flag if the data or state has changed -->
-        <button type="submit" [disabled]="!(form.valid && form.dirty)"
+        <button type="submit" 
             class="btn btn-lg btn-primary form-control">Submit</button>
     </div>
              
 </form>
+
+<div class="d-flex justify-content-end" style="margin:20px;">
+    <button  class="details btn btn-info btn-danger" (click)="back()">Back</button>
+  </div>
