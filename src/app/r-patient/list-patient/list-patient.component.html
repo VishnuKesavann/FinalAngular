@@ -11,7 +11,7 @@
         <div class="col-md-6" *ngIf="showNameSearch">
             <form [formGroup]="searchForm">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control search-input" formControlName="searchByName" placeholder="Search by Patient Name">
+                    <input type="text" class="form-control search-input" formControlName="searchByName" placeholder="Search by Patient Name" (input)="searchPatientsByName()">
                     <button class="btn btn-secondary" type="button" (click)="searchPatientsByName()">Search</button>
                 </div>
             </form>
