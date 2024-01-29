@@ -6,11 +6,12 @@ import { Userlogin } from './userlogin';
   providedIn: 'root'
 })
 export class UserloginService {
-
+  isLogin:Boolean;
   constructor(private httpClient:HttpClient) { }
 
   public loginVerify(userlogin:Userlogin){
     //calling the api for checking username and password
     return this.httpClient.get<Userlogin>(environment.apiUrl+'api/AUserlogin/'+userlogin.UserName+ '/'+userlogin.Password)
-      }
+       
+  }
 }

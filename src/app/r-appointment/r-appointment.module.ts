@@ -12,6 +12,7 @@ import { BillGenerationComponent } from './bill-generation/bill-generation.compo
 import { ListAppointmentComponent } from './list-appointment/list-appointment.component';
 import { RPatientModule } from '../r-patient/r-patient.module';
 import {NgxPaginationModule} from 'ngx-pagination'
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [AppointmentComponent, BookappointmentComponent, BillGenerationComponent, ListAppointmentComponent],
@@ -23,7 +24,8 @@ import {NgxPaginationModule} from 'ngx-pagination'
     MatInputModule,
     MatFormFieldModule,
     MatDatepickerModule,ReactiveFormsModule,
-    RPatientModule
+    RPatientModule,
+    ReactiveFormsModule,MatNativeDateModule
   ]
 })
 export class RAppointmentModule { }
