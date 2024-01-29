@@ -8,6 +8,7 @@ import { ListPatdetailComponent } from './list-patdetail/list-patdetail.componen
 import { AddDiagnosisComponent } from './add-diagnosis/add-diagnosis.component';
 import { FormsModule } from '@angular/forms';
 import { ListPathisComponent } from './list-pathis/list-pathis.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ListPathisComponent } from './list-pathis/list-pathis.component';
   imports: [
     CommonModule,
     DDoctorRoutingModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ]
 })
 export class DDoctorModule { }

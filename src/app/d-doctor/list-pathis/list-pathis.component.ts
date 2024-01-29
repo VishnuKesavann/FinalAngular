@@ -9,7 +9,7 @@ import { PatienthisService } from 'src/app/shared/patienthis.service';
 })
 export class ListPathisComponent implements OnInit {
 
-
+  filter:any
   PatientId : number;
 
   constructor(public pathistory : PatienthisService, public router : Router, public route : ActivatedRoute) { }

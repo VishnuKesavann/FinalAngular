@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let lab of LReportVM.lReportVM">
+      <tr *ngFor="let lab of LReportVM.lReportVM ">
         <td>{{ lab.ReportId }}</td>
         <td>{{ lab.ReportDate | date: 'yyyy-MM-dd' }}</td>
         <td>{{ lab.PatientName }}</td>
@@ -23,7 +23,7 @@
         <td>{{ lab.TestResult }}</td>
         <td>{{ lab.Remarks }}</td>
         <td>
-          <button class="btn btn-info" (click)="generateReport()">Generate Bill</button>
+          <button class="btn btn-info" (click)="generateReport(lab.ReportId)">Generate Bill</button>
           <button class="btn btn-info" (click)="ViewReport(lab)">View</button>
         </td>
       </tr>
