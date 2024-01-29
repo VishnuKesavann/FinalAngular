@@ -35,7 +35,8 @@ import { LabaddComponent } from './l-laboratory/labadd/labadd.component';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
 
 
     

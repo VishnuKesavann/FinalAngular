@@ -21,7 +21,7 @@ export class UserloginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private userloginService: UserloginService, private router: Router) { }
 
   ngOnInit(): void {
-
+    this.userloginService.isLogin=false;
      //we are creating a reactive form model
      this.loginForm = this.formBuilder.group({
       //form control name fields
@@ -69,21 +69,26 @@ export class UserloginComponent implements OnInit {
           if (response == null) {
             this.error = "Invalid username and/or password";
           } else if (response.rId == 1303) {
+            this.userloginService.isLogin=true;
             this.router.navigateByUrl('staff/list-staff');
             console.log('Admin');
           } else if (response.rId == 1302) {
+            this.userloginService.isLogin=true;
             this.router.navigateByUrl('patient/patient-list');
             console.log('Reception');
           }
           else if (response.rId == 301) {
+            this.userloginService.isLogin=true;
             this.router.navigateByUrl('doctor/list');
             console.log('Doctor');
           }
           else if (response.rId == 304) {
+            this.userloginService.isLogin=true;
             this.router.navigateByUrl('pharmasist/   ');
             console.log('Pharmasist');
           } 
           else if (response.rId == 302) {
+            this.userloginService.isLogin=true;
             this.router.navigateByUrl('labtechnician/list-lab');
             console.log('Labtech');
           }else {

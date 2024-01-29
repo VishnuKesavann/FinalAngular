@@ -34,23 +34,34 @@
         <input type="hidden" id="StaffId" name="StaffId" [(ngModel)]="getIdVm.getidvm1.StaffId" class="form-control" required>
         <input type="hidden" id="TestId" name="TestId" [(ngModel)]="getIdVm.getidvm1.TestId" class="form-control" required>
         <div class="col-md-6 mb-3">
-        <label for="reportDate">ReportDate:</label>
-        <input type="date" id="reportDate" name="reportDate" [(ngModel)]="labreportService.formData_L.ReportDate" class="form-control" required>
+          <label for="reportDate">ReportDate:</label>
+          <input type="date" id="reportDate" name="reportDate" [(ngModel)]="labreportService.formData_L.ReportDate" class="form-control" required
+                 min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
       </div>
   </div>
   
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label for="testResult">TestResult:</label>
-        <input type="text" id="labResult" name="labResult" [(ngModel)]="labreportService.formData_L.TestResult" class="form-control" required>
-      </div>
-  
-      <div class="col-md-6 mb-3">
-        <label for="remarks">Remarks:</label>
-        <textarea id="remarks" name="remarks" [(ngModel)]="labreportService.formData_L.Remarks" class="form-control"></textarea>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="testResult">TestResult:</label>
+      <input type="text" id="labResult" name="labResult" [(ngModel)]="labreportService.formData_L.TestResult" class="form-control" required>
+      <div *ngIf="labForm.submitted && labForm.controls['labResult'].hasError('required')" class="text-danger">
+        Test Result is required.
       </div>
     </div>
-  <button type="submit" class="btn btn-primary"(click)="generateReport(labreportService.formData_L.ReportId)">Submit</button>
-  </form>
-  <div><button (click)="goBack()">Back</button></div>
-  
+
+    <div class="col-md-6 mb-3">
+      <label for="remarks">Remarks:</label>
+      <textarea id="remarks" name="remarks" [(ngModel)]="labreportService.formData_L.Remarks" class="form-control"></textarea>
+    </div>
+    
+  </div>
+
+  <div *ngIf="labForm.submitted && labForm.invalid" class="text-danger">
+    Please fill in all required fields.
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div class="position-fixed bottom-0 end-0 p-3">
+  <button (click)="goBack()" class="btn btn-secondary">Back</button>
+</div>

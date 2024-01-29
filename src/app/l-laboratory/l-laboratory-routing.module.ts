@@ -10,7 +10,7 @@ const routes: Routes = [
 {path:'list-lab',component:LablistComponent},
 {path:'report/:AppointmentId',component:ReportlistComponent},
 {path:'add', component:LabaddComponent},
-{path:'bill',component:BillComponent},
+{path:'bill/:ReportId',component:BillComponent},
 {path:'view',component:ViewReportComponent}
 ];
 

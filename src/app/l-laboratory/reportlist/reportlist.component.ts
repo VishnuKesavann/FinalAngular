@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LabReportVMService}from 'src/app/shared/lab-report-vm.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-reportlist',
   templateUrl: './reportlist.component.html',
@@ -16,12 +17,12 @@ export class ReportlistComponent implements OnInit {
     console.log('welcome to life cycle hook');
     this.LReportVM.BindListReport();
   }
-  generateReport() {
+  generateReport(ReportId:number) {
      // Assuming you want to pre-fill some fields in labreportService.formData_L
      
 
   // Navigate to the lab report form
-  this.router.navigate(['/labtechnician/bill'])
+  this.router.navigate(['/labtechnician/bill',ReportId])
   }
   ViewReport(lab:any){
     this.LReportVM.formData_L.ReportId = lab.ReportId;
