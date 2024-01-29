@@ -13,6 +13,9 @@ import { Subscription } from 'rxjs';
 
 export class AppComponent {
   title = 'FinalCMSProject';
+  showlogout:boolean=true;
+  constructor(private router: Router) { }
+
   roleId: number;
   roleIdAssigned:boolean;
   roleIdSubscription: Subscription;
@@ -47,6 +50,7 @@ export class AppComponent {
     return this.router.isActive('patient/r-home', true);
   }
   logout() {
+    this.showlogout=false;
     this.router.navigate(["login/userlogin"]);
     this.userLoginService.isLogin=false;
     this.roleIdAssigned=false;

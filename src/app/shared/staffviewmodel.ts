@@ -14,4 +14,12 @@ export class Staffviewmodel {
     Department1:string=null;
     SpecializationId:number=0;
     LoginId:number=0;
+    SpecializationName:string=null;
+    RoleName:string=null;
+    ConsultationFee:number=0;
+    UserName:string=null;
+    Password:string=null;
+    DepartmentId:number=0;
+    QualificationId:number=0;
+    RoleId:number=0;
 }

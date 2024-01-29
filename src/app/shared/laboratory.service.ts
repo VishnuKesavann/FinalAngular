@@ -1,49 +1,44 @@
+// laboratory.service.ts
 import { Injectable } from '@angular/core';
-import { Laboratory } from './laboratory';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Laboratory } from './laboratory';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LaboratoryService {
- 
+  lab: Laboratory[];
+  formData: Laboratory = new Laboratory();
 
-  laboratory:Laboratory[];
-  formData:Laboratory=new Laboratory();
+  constructor(private httpClient: HttpClient) { }
 
-  constructor(private httpClient:HttpClient) { }
+  BindListLab() {
+    this.httpClient.get(environment.apiUrl + "/api/ALaboratory")
+      .toPromise().then(response => {
+        this.lab = response as Laboratory[];
+        console.log(this.lab);
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+  }
 
-  BindListMedicine()
-{
-  this.httpClient.get(environment.apiUrl+"api/ALaboratory")
-  .toPromise().then(response=>
-    {this.laboratory=response as Laboratory[];
-      console.log(this.laboratory);
-    }).catch(error=>{console.error('Error: ',error)})
-}
-//add lab
-insertLabTest(lb:Laboratory):Observable<any>{
-  return this.httpClient.post(environment.apiUrl+"api/ALaboratory/",lb);
-}
+  // add lab
+  insertLabTest(lb: Laboratory): Observable<any> {
+    return this.httpClient.post(environment.apiUrl + "/api/ALaboratory", lb);
+  }
 
+  // Get Lab
+  getLab(testId: number): Observable<any> {
+    return this.httpClient.get(environment.apiUrl + "/api/ALaboratory/" + testId);
+  }
 
-///get lab
-getLab(testId: number): Observable<any> {
-  // Construct the URL with the testId parameter
-  const url = `${environment.apiUrl}api/ALaboratory/${testId}`;
+  updateLab(lab: Laboratory): Observable<any> {
+    return this.httpClient.put(environment.apiUrl + "/api/ALaboratory/", lab);
+  }
 
-  // Make the GET request with the constructed URL
-  return this.httpClient.get(url);
-}
-
-
-
-updateLab(lab:Laboratory):Observable<any>{
-  return this.httpClient.put(environment.apiUrl+"api/ALaboratory/",lab)
-}
-deleteLab(id:number){
-  return this.httpClient.delete(environment.apiUrl+"api/ALaboratory/"+id);
-}
+  deleteLab(id: number): Observable<any> {
+    return this.httpClient.delete(environment.apiUrl + "/api/ALaboratory/" + id);
+  }
 }

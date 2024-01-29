@@ -24,7 +24,7 @@
     <div class="form-group">
         <label>Low Range &nbsp;</label>
             <input name="LowRange" #LowRange="ngModel" [(ngModel)]="labservice.formData.LowRange"
-                class="form-control" placeholder="Enter Low Range" minlength="3" maxlength="25" required
+                class="form-control" placeholder="Enter Low Range"  required
                 [ngClass]="{'is-invalid':LowRange.touched && LowRange.invalid}">
     
             <div class="Validation-error" *ngIf="LowRange.touched && LowRange.invalid">
@@ -37,7 +37,7 @@
         <div class="form-group">
             <label>High Range&nbsp;</label>
                 <input name="HighRange" #HighRange="ngModel" [(ngModel)]="labservice.formData.HighRange"
-                    class="form-control" placeholder="Enter High Range" minlength="3" maxlength="25" required
+                    class="form-control" placeholder="Enter High Range"  required
                     [ngClass]="{'is-invalid':HighRange.touched && HighRange.invalid}">
         
                 <div class="Validation-error" *ngIf="HighRange.touched && HighRange.invalid">
@@ -48,13 +48,13 @@
 
             
             <div class="form-group">
-                <label>Price&nbsp;</label>
-                    <input name="Price" #Price="ngModel" [(ngModel)]="labservice.formData.TestPrice"
-                        class="form-control" placeholder="Enter Price" minlength="3" maxlength="25" required
-                        [ngClass]="{'is-invalid':Price.touched && Price.invalid}">
+                <label>TestPrice&nbsp;</label>
+                    <input name="TestPrice" #TestPrice="ngModel" [(ngModel)]="labservice.formData.TestPrice"
+                        class="form-control" placeholder="Enter TestPrice" minlength="3" maxlength="25" required
+                        [ngClass]="{'is-invalid':TestPrice.touched && TestPrice.invalid}">
             
-                    <div class="Validation-error" *ngIf="Price.touched && Price.invalid">
-                        <div>Price is required</div>
+                    <div class="Validation-error" *ngIf="TestPrice.touched && TestPrice.invalid">
+                        <div>TestPrice is required</div>
                     </div>
                 </div>
                 <br>
@@ -64,3 +64,6 @@
                     <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-lg btn-primary form-control">Submit</button>
                 </div>
                 </form>
+                <div class="d-flex justify-content-end" style="margin:20px;">
+                    <button  class="details btn btn-info btn-danger " (click)="back()">Back</button>
+                  </div>

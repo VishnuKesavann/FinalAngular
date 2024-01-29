@@ -13,6 +13,11 @@ import { AuthGuardService } from 'src/app/shared/auth-guard.service';
 import { UserloginComponent } from './a-login/userlogin/userlogin.component';
 
 const routes: Routes = [
+
+  {path:'a-home',component:HomeComponent,
+  loadChildren:()=>import('./a-home/a-home.module').then(x=>x.AHomeModule)
+  },
+
   {path:'lab',component:LabComponent,
   loadChildren:()=>import('./a-lab/a-lab.module').then(x=>x.ALabModule)
  },

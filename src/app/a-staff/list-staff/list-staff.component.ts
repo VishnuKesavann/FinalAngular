@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {StaffviewmodelService} from 'src/app/shared/staffviewmodel.service';
+import { Router } from '@angular/router';
+
+import { StaffviewmodelService } from 'src/app/shared/staffviewmodel.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-staff',
@@ -7,15 +10,38 @@ import {StaffviewmodelService} from 'src/app/shared/staffviewmodel.service';
   styleUrls: ['./list-staff.component.scss']
 })
 export class ListStaffComponent implements OnInit {
-
-  constructor(public staffviewmodelService: StaffviewmodelService) { }
+  page:number=1;
+  filter: number;
+  constructor(public staffservice:StaffviewmodelService,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
-
-    console.log("welcome to life cycle hook")
-    this.staffviewmodelService.BindListMedicine();
-
+    console.log("Welcome to lifecycle hook")
+    this.staffservice.BindListStaffs();
   }
 
-}
 
+  UpdateStaff(staffId: number) {
+    
+    console.log(staffId);
+    this.router.navigate(['staff/update-staff', staffId]);
+  }
+  back(){
+    this.router.navigateByUrl("a-home/adminhome");
+      }
+
+  deleteStaff(id: number) {
+    if (confirm('Are you sure to delete this record?')) {
+      this.staffservice.deletestaff(id).subscribe(
+        response => {
+          this.staffservice.BindListStaffs();
+          this.toastr.success('Deleted successfully', 'CMSApp 2023');
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+  }
+}
