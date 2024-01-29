@@ -81,7 +81,7 @@ export class BookappointmentComponent implements OnInit {
         console.log(FormData);
       },error=>console.log(error)
     );
-
+    this.bookingService.departments=null;
     this.bookingService.BindDeparment();
     
 

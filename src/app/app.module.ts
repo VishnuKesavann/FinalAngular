@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LablistComponent } from './l-laboratory/lablist/lablist.component';
 import { LabaddComponent } from './l-laboratory/labadd/labadd.component';
+import { AuthGuardService } from 'src/app/shared/auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,7 @@ import { LabaddComponent } from './l-laboratory/labadd/labadd.component';
 
     
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

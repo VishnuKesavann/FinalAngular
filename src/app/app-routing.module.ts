@@ -9,7 +9,8 @@ import { PharmasistComponent } from './p-pharmasist/pharmasist/pharmasist.compon
 import { AppointmentComponent } from './r-appointment/appointment/appointment.component';
 import { PatientComponent } from './r-patient/patient/patient.component';
 import { LaboratoryComponent } from './l-laboratory/laboratory/laboratory.component';
-
+import { AuthGuardService } from 'src/app/shared/auth-guard.service';
+import { UserloginComponent } from './a-login/userlogin/userlogin.component';
 
 const routes: Routes = [
   {path:'lab',component:LabComponent,
@@ -55,9 +56,12 @@ const routes: Routes = [
 
 {path:'patient',component:PatientComponent,
   loadChildren:()=>import('./r-patient/r-patient.module').then(x=>x.RPatientModule)
-  }
-
-
+  },
+{
+  path: '',
+  component: UserloginComponent,
+  canActivate: [AuthGuardService], // Apply the guard here
+}
 ];
 
 @NgModule({

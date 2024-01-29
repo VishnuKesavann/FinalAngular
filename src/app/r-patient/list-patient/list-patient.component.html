@@ -17,10 +17,17 @@
             </form>
         </div>
     </div>
-    <div class="row mt-3">
+    <div class="row mt-3" *ngIf="!showDisablePatient">
         <div class="col">
             <div class="d-flex">
-               <pre><a [routerLink]="['../patient-add']" class="btn btn-outline-info btn-md">Register New Patient</a> <a [routerLink]="['../disabledpatient-list']" class="btn btn-outline-secondary btn-md ml-2">Disabled Patient Records</a></pre>
+               <pre><a [routerLink]="['../patient-add']" class="btn btn-outline-info btn-md">REGISTER NEW PATIENT</a> <a [routerLink]="['../disabledpatient-list']" class="btn btn-outline-secondary btn-md ml-2">DISABLED PATIENT RECORDS</a></pre>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3" *ngIf="showDisablePatient">
+        <div class="col">
+            <div class="d-flex">
+                <a [routerLink]="['../patient-list']" class="btn btn-outline-warning btn-md ml-2"> PATIENT RECORDS</a>
             </div>
         </div>
     </div>

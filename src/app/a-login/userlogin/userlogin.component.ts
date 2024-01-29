@@ -11,7 +11,7 @@ import { UserloginService } from 'src/app/shared/userlogin.service';
   styleUrls: ['./userlogin.component.scss']
 })
 export class UserloginComponent implements OnInit {
-
+  
    //declare variables
    loginForm: FormGroup;
    isSubmitted = false;
@@ -72,25 +72,30 @@ export class UserloginComponent implements OnInit {
             this.userloginService.isLogin=true;
             this.router.navigateByUrl('staff/list-staff');
             console.log('Admin');
+            this.userloginService.setAuthenticationState(true);
           } else if (response.rId == 1302) {
             this.userloginService.isLogin=true;
-            this.router.navigateByUrl('patient/patient-list');
+            this.router.navigateByUrl('patient/r-home');
             console.log('Reception');
+            this.userloginService.setAuthenticationState(true);
           }
           else if (response.rId == 301) {
             this.userloginService.isLogin=true;
             this.router.navigateByUrl('doctor/list');
             console.log('Doctor');
+            this.userloginService.setAuthenticationState(true);
           }
           else if (response.rId == 304) {
             this.userloginService.isLogin=true;
             this.router.navigateByUrl('pharmasist/   ');
             console.log('Pharmasist');
+            this.userloginService.setAuthenticationState(true);
           } 
           else if (response.rId == 302) {
             this.userloginService.isLogin=true;
             this.router.navigateByUrl('labtechnician/list-lab');
             console.log('Labtech');
+            this.userloginService.setAuthenticationState(true);
           }else {
             this.error = "Sorry, you are not allowed to access the system";
           }

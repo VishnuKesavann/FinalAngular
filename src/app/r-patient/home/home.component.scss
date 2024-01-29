@@ -1,0 +1,47 @@
+/* Add these styles to your existing styles.scss or styles.css */
+
+.card.welcome-receptionist {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    background-color: #5181b8; /* Adjusted background color for the Welcome Receptionist card */
+    color: #fff; /* Text color */
+    padding: 2rem; /* Increased padding for better spacing */
+  }
+  
+  .card.navigation-links {
+    margin-top: 20px; /* Adjusted margin for better separation */
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    background-color: #f2edeb; /* Adjusted background color for the Navigation Links card */
+    padding: 2rem; /* Increased padding for better spacing */
+  }
+  
+  .card.navigation-links .btn {
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  /* Adjust the colors to match your clinic's theme */
+  .btn-primary {
+    background-color: #136d43; /* Primary color */
+    border-color: #136d43; /* Primary color */
+  }
+  
+  .btn-secondary {
+    background-color: #c6a869; /* Secondary color */
+    border-color: #c6a869; /* Secondary color */
+  }
+  
+  .btn-info {
+    background-color: #0084a0; /* Accent color */
+    border-color: #0084a0; /* Accent color */
+    color: #fff; /* Text color */
+  }
+  
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-info:hover {
+    opacity: 0.9;
+  }
+  

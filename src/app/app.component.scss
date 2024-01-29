@@ -47,4 +47,13 @@ $logo-grey: #a4a4a4;
   .navbar-brand > a:hover {
     color: $logo-grey; // Use secondary logo color on hover
   }
+  .navbar-nav li.nav-item a.nav-link {
+    color: white; /* Set the text color to white */
+  }
+  
+  .navbar-nav li.nav-item a.nav-link:hover {
+    background-color: #f8f9fa; /* Set the hover background color */
+    color: #343a40; /* Set the hover text color */
+    width: 75px;
+  }
 }
